@@ -61,7 +61,70 @@ ul {
     background-color: #060606;
 }
 
-.welcome {
+.welcome h3{
+    font-weight: bold;
     text-align: center;
     margin: 30px 0;
+}
+
+.book-card {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.book-cover {
+    width: 120px; /* Reducir el tamaño de la portada */
+    height: 160px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.book-info {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info h5 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+
+.book-info p {
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    color: #666;
+}
+
+.book-details {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.book-details strong {
+    font-weight: bold;
+}
+
+.accordion-button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    text-align: left;
+    padding: 10px 15px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.accordion-button:hover {
+    background-color: #e0e0e0;
 }

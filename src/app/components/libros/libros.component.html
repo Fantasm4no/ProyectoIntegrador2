@@ -1,0 +1,25 @@
+<div class="accordion" id="accordionExample">
+  <div *ngFor="let libro of libros; let i = index" class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse_' + i" aria-expanded="true" [attr.aria-controls]="'collapse_' + i">
+        {{ libro.titulo }}
+      </button>
+    </h2>
+    <div [attr.id]="'collapse_' + i" class="accordion-collapse collapse" [class.show]="i === 0" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="book-card">
+          <img [src]="libro.portada" alt="Portada del libro" class="book-cover">
+          <div class="book-info">
+            <h5>{{ libro.titulo }}</h5>
+            <p>{{ libro.edicion }}ª edición</p>
+            <div class="book-details">
+              <strong>Género:</strong> {{ libro.genero }}                  
+              <strong>Autor:</strong> {{ libro.autor }} <br>
+              <strong>Contenido:</strong> {{ libro.contenido }} <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
