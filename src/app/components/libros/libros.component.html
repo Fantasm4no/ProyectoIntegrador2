@@ -13,16 +13,16 @@
             <h5>{{ libro.titulo }}</h5>
             <p>{{ libro.edicion }}ª edición</p>
             <div class="book-details">
-              <strong>Género:</strong> {{ libro.genero }}                  
+              <strong>Género:</strong> {{ libro.genero }} <br>
               <strong>Autor:</strong> {{ libro.autor }} <br>
               <strong>Contenido:</strong> {{ libro.contenido }} <br>
               <button *ngIf="libro.libroId !== undefined" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
-              <button (click)="seleccionarLibro(libro)" class="delete-button">Seleccionar</button>
+              <button (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
             </div>
           </div>
         </div>
-        <div *ngIf="libro.titulo === newLibro.titulo">
-          <h2>{{ isEditMode ? 'Actualizar Libro' : 'Crear Libro' }}</h2>
+        <div *ngIf="libroEditIndex === i">
+          <h2>Actualizar Libro</h2>
           <form class="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label>Título:</label>
@@ -42,13 +42,14 @@
             </div>
             <div class="form-group">
               <label>Contenido:</label>
-              <input [(ngModel)]="newLibro.contenido" name="contenido">
+              <input [(ngModel)]="newLibro.autor" name="autor" required>
             </div>
             <div class="form-group">
               <label>Portada:</label>
               <input [(ngModel)]="newLibro.portada" name="portada">
             </div>
-            <button class="delete-button" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
+            <button type="submit" class="delete-button">Actualizar</button>
+            <button type="button" class="delete-button" (click)="resetForm()">Cancelar</button>
           </form>
         </div>
       </div>

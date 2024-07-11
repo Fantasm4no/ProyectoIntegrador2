@@ -5,7 +5,7 @@
     <nav>
         <ul class="nav_links">
             <li><a href="#">Inicio</a></li>
-            <li><a routerLink="/libros">Libros</a></li>
+            <li><a routerLink="/libros" (click)="ocultarFormulario()">Libros</a></li>
             <li><a routerLink="/mi-perfil">Mi Perfil</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
@@ -15,4 +15,37 @@
 <div class="welcome">
     <h3>Bienvenido: </h3>
 </div>
-<router-outlet />
+
+<div *ngIf="mostrarFormulario">
+    <h2>Crear Libro</h2>
+    <form class="form" (ngSubmit)="createLibro()">
+        <div class="form-group">
+            <label>Título:</label>
+            <input [(ngModel)]="newLibro.titulo" name="titulo" required>
+        </div>
+        <div class="form-group">
+            <label>Edición:</label>
+            <input [(ngModel)]="newLibro.edicion" name="edicion" required>
+        </div>
+        <div class="form-group">
+            <label>Género:</label>
+            <input [(ngModel)]="newLibro.genero" name="genero" required>
+        </div>
+        <div class="form-group">
+            <label>Autor:</label>
+            <input [(ngModel)]="newLibro.autor" name="autor" required>
+        </div>
+        <div class="form-group">
+            <label>Contenido:</label>
+            <input [(ngModel)]="newLibro.contenido" name="contenido" required>
+        </div>
+        <div class="form-group">
+            <label>Portada:</label>
+            <input [(ngModel)]="newLibro.portada" name="portada">
+        </div>
+        <button type="submit" class="delete-button">Crear</button>
+    </form>
+</div>
+<div *ngIf="!mostrarFormulario">
+    <router-outlet />
+</div>

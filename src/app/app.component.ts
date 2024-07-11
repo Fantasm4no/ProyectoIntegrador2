@@ -1,13 +1,38 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { LibrosService } from './services/libros.service';
+import { Libro } from './model/libro';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Proyecto Integrador';
+
+  libros?: Libro[];
+  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+  mostrarFormulario: boolean = true
+
+  constructor(private libroService: LibrosService){}
+
+  createLibro(): void {
+    this.libroService.guardarLibro(this.newLibro).subscribe(libro => {
+      this.libros?.push(libro);
+      this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+    });
+  }
+
+  resetForm() {
+    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+    this.mostrarFormulario = true; // Muestra el formulario al reiniciarlo
+  }
+
+  ocultarFormulario(): void {
+    this.mostrarFormulario = false;
+  }
 }

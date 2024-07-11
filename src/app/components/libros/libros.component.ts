@@ -11,12 +11,12 @@ import { LibrosService } from '../../services/libros.service';
   templateUrl: './libros.component.html',
   styleUrl: './libros.component.scss'
 })
-export class LibrosComponent implements OnInit{
+export class LibrosComponent implements OnInit {
 
-  isEditMode: boolean = false;
   libros: Libro[] = [];
   newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
-  
+  libroEditIndex: number | null = null
+
   constructor(private libroService: LibrosService) { }
 
   ngOnInit() {
@@ -37,31 +37,31 @@ export class LibrosComponent implements OnInit{
   }
 
   actualizarLibro() {
-    this.libroService.actualizarLibro(this.newLibro).subscribe({
-      next: (libroActualizado) => {
-        console.log('Libro actualizado:', libroActualizado);
-        this.cargarLibros();
-        this.resetForm();
-      },
-      error: (error) => console.error('Error al actualizar libro:', error)
-    });
+    if (this.libroEditIndex !== null) {
+      this.libroService.actualizarLibro(this.newLibro).subscribe({
+        next: (libroActualizado) => {
+          console.log('Libro actualizado:', libroActualizado);
+          this.cargarLibros();
+          this.resetForm();
+        },
+        error: (error) => console.error('Error al actualizar libro:', error)
+      });
+    }
   }
 
   resetForm() {
     this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
-    this.isEditMode = false;
+    this.libroEditIndex = null
   }
 
-  seleccionarLibro(libro: Libro) {
+  seleccionarLibro(libro: Libro, index: number) {
     this.newLibro = { ...libro };
-    this.isEditMode = true;
+    this.libroEditIndex = index
   }
 
   onSubmit() {
-    if (this.isEditMode) {
+    if (this.libroEditIndex !== null) {
       this.actualizarLibro();
-    } else {
-      console.log("No hay nada que crear");
     }
   }
 }
