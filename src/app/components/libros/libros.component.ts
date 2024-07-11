@@ -13,23 +13,55 @@ import { LibrosService } from '../../services/libros.service';
 })
 export class LibrosComponent implements OnInit{
 
-  libros?: Libro[];
-  libroSeleccionado: Libro | null = null;
-
+  isEditMode: boolean = false;
+  libros: Libro[] = [];
+  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+  
   constructor(private libroService: LibrosService) { }
 
   ngOnInit() {
-    this.cargarClientes();
+    this.cargarLibros();
   }
 
-  cargarClientes() {
-    this.libroService.obtenerLibros().subscribe({
-      next: (data: Libro[]) => this.libros = data,
-      error: (error) => console.error('Error cargando clientes:', error)
+  cargarLibros() {
+    this.libroService.obtenerLibros().subscribe(libros => {
+      this.libros = libros;
     });
   }
 
-  mostrarDetalles(libro: Libro): void {
-    this.libroSeleccionado = this.libroSeleccionado === libro ? null : libro
+  eliminarLibro(libroId: number) {
+    this.libroService.eliminarLibro(libroId).subscribe({
+      next: () => this.cargarLibros(),
+      error: error => console.error('Error al eliminar libro:', error)
+    });
+  }
+
+  actualizarLibro() {
+    this.libroService.actualizarLibro(this.newLibro).subscribe({
+      next: (libroActualizado) => {
+        console.log('Libro actualizado:', libroActualizado);
+        this.cargarLibros();
+        this.resetForm();
+      },
+      error: (error) => console.error('Error al actualizar libro:', error)
+    });
+  }
+
+  resetForm() {
+    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+    this.isEditMode = false;
+  }
+
+  seleccionarLibro(libro: Libro) {
+    this.newLibro = { ...libro };
+    this.isEditMode = true;
+  }
+
+  onSubmit() {
+    if (this.isEditMode) {
+      this.actualizarLibro();
+    } else {
+      console.log("No hay nada que crear");
+    }
   }
 }

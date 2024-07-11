@@ -15,4 +15,16 @@ export class LibrosService {
   obtenerLibros(): Observable<Libro[]> {
     return this.http.get<Libro[]>(this.apiUrl);
   }
+
+  eliminarLibro(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
+  }
+
+  guardarLibro(libro: Libro): Observable<Libro> {
+    return this.http.post<Libro>(this.apiUrl, libro);
+  }
+
+  actualizarLibro(libro: Libro): Observable<Libro> {
+    return this.http.put<Libro>(this.apiUrl, libro);
+  }
 }
