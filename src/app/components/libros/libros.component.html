@@ -13,6 +13,7 @@
             <h5>{{ libro.titulo }}</h5>
             <p>{{ libro.edicion }}ª edición</p>
             <div class="book-details">
+              <strong>Ejemplares: </strong> {{libro.ejemplares }} <br>
               <strong>Género:</strong> {{ libro.genero }} <br>
               <strong>Autor:</strong> {{ libro.autor }} <br>
               <strong>Contenido:</strong> {{ libro.contenido }} <br>
@@ -31,6 +32,10 @@
             <div class="form-group">
               <label>Edición:</label>
               <input [(ngModel)]="newLibro.edicion" name="edicion" required>
+            </div>
+            <div class="form-group">
+              <label>Ejemplares:</label>
+              <input [(ngModel)]="newLibro.ejemplares" name="edicion" required>
             </div>
             <div class="form-group">
               <label>Género:</label>

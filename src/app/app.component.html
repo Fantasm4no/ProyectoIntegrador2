@@ -5,15 +5,29 @@
     <nav>
         <ul class="nav_links">
             <li><a href="#">Inicio</a></li>
-            <li><a routerLink="/libros" (click)="ocultarFormulario()">Libros</a></li>
+            <li><a routerLink="/libros" (click)="ocultarWelcome()">Libros</a></li>
             <li><a routerLink="/mi-perfil">Mi Perfil</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </nav>
 </header>
 
-<div class="welcome">
-    <h3>Bienvenido: </h3>
+<div class="welcome" *ngIf="mostrarWelcome">
+    <h3>Bienvenido</h3>
+    <h5 class="intro">
+        Sistema de Gestión para Biblioteca Pública. Controle y administre de forma óptima y fácil el flujo de préstamos y devoluciones de Libros.
+        Esta herramienta le permitirá llevar un control completo y detallado de su Biblioteca. tendrá acceso a herramientas especiales para tareas específicas, como lo son:
+    </h5>
+    <ul class="features">
+        <li>• Préstamos</li>
+        <li>• Devoluciones</li>
+        <li>• Registro de Usuarios y Libros Nuevos</li>
+        <li>• Edición de Usuarios y Libros existentes</li>
+        <li>• Eliminar todo tipo de Registros</li>
+        <li>• Sección de Reportes de acciones en el sistema</li>
+    </ul>
+
+    <button class="delete-button" (click)="mostrarFormulario = true">Crear Libro</button>
 </div>
 
 <div *ngIf="mostrarFormulario">
@@ -26,6 +40,10 @@
         <div class="form-group">
             <label>Edición:</label>
             <input [(ngModel)]="newLibro.edicion" name="edicion" required>
+        </div>
+        <div class="form-group">
+            <label>Ejemplares:</label>
+            <input [(ngModel)]="newLibro.ejemplares" name="ejemplares" required>
         </div>
         <div class="form-group">
             <label>Género:</label>
@@ -44,8 +62,10 @@
             <input [(ngModel)]="newLibro.portada" name="portada">
         </div>
         <button type="submit" class="delete-button">Crear</button>
+        <button type="button" (click)="mostrarFormulario = false" class="delete-button">Cancelar</button>
     </form>
 </div>
-<div *ngIf="!mostrarFormulario">
+
+<div *ngIf="!mostrarWelcome">
     <router-outlet />
 </div>

@@ -10,13 +10,13 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, RouterLink, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
   libros?: Libro[];
   newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
-  mostrarFormulario: boolean = true
+  mostrarFormulario: boolean = false; 
+  mostrarWelcome: boolean = true;  // Variable para controlar la visibilidad de welcome
 
   constructor(private libroService: LibrosService){}
 
@@ -29,10 +29,14 @@ export class AppComponent {
 
   resetForm() {
     this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
-    this.mostrarFormulario = true; // Muestra el formulario al reiniciarlo
+    this.mostrarFormulario = false; // Muestra el formulario al reiniciarlo
   }
 
   ocultarFormulario(): void {
     this.mostrarFormulario = false;
+  }
+
+  ocultarWelcome(): void {
+    this.mostrarWelcome = false;  // Método para ocultar welcome
   }
 }

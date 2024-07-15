@@ -14,7 +14,7 @@ import { LibrosService } from '../../services/libros.service';
 export class LibrosComponent implements OnInit {
 
   libros: Libro[] = [];
-  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', ejemplares: 0};
   libroEditIndex: number | null = null
 
   constructor(private libroService: LibrosService) { }
@@ -50,7 +50,7 @@ export class LibrosComponent implements OnInit {
   }
 
   resetForm() {
-    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '' };
+    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', ejemplares: 0 };
     this.libroEditIndex = null
   }
 
