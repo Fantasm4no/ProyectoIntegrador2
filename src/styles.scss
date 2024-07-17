@@ -5,7 +5,11 @@ html, body {
     padding: 0;
     position: relative;
     min-height: 100vh;
-    color: #333;
+    color: #fff;
+    overflow: auto;
+    background-image: url('https://i.pinimg.com/originals/97/57/93/975793fff4eb682dcc396c2885a13f2f.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
 a {
@@ -67,40 +71,43 @@ ul {
     align-items: center;
     text-align: center;
     margin: 50px;
+    color: white;
+    font-size: 20px;
 }
 
 .welcome h3 {
-    font-weight: bold;
     margin: 30px 0;
+    color: white;
 }
 
 .welcome p {
-    font-size: 16px;
+    font-size: 12px;
     max-width: 600px;
     margin-bottom: 20px;
+    color: white;
 }
 
 .welcome ul {
     list-style: none;
     padding: 0;
+    color: white;
 }
 
 .welcome ul li {
-    font-size: 16px;
+    font-size: 20px;
     margin: 5px 0;
+    color: white;
 }
 
 .book-card {
     display: flex;
     margin-bottom: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .book-cover {
-    width: 120px; /* Reducir el tamaño de la portada */
+    width: 120px;
     height: 160px;
     object-fit: cover;
     border-top-left-radius: 10px;
@@ -122,14 +129,13 @@ ul {
 .book-info p {
     margin: 0 0 5px 0;
     font-size: 1em;
-    color: #666;
+    color: #ddd;
 }
 
 .book-details {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid #ddd;
-    flex: 1; /* Asegura que los detalles ocupen todo el espacio disponible verticalmente */
+    flex: 1;
 }
 
 .book-details strong {
@@ -137,7 +143,7 @@ ul {
 }
 
 .accordion-button {
-    background-color: #34495e; /* Color de fondo acorde a tu especificación */
+    background-color: #34495e;
     color: #ffffff;
     border: none;
     text-align: left;
@@ -150,7 +156,7 @@ ul {
 }
 
 .accordion-button:hover {
-    background-color: #2c3e50; /* Color más oscuro al pasar el ratón */
+    background-color: #2c3e50;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -160,7 +166,7 @@ ul {
 }
 
 .delete-button {
-    background-color: #e74c3c; /* Color rojo para el botón de eliminar */
+    background-color: #34495e;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -172,13 +178,8 @@ ul {
 }
 
 .delete-button:hover {
-    background-color: #c0392b; /* Color más oscuro al pasar el ratón */
+    background-color: #7e33336b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.delete-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
 }
 
 .form-group {
@@ -194,6 +195,50 @@ ul {
 .form-group input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    background-color: transparent;
+    border: 1px solid #fff;
     border-radius: 5px;
+    color: #fff;
+}
+
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #34495e;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.update-button, .cancel-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
 }

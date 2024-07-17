@@ -4,14 +4,15 @@
     </h1>
     <nav>
         <ul class="nav_links">
-            <li><a href="#">Inicio</a></li>
-            <li><a routerLink="/libros" (click)="ocultarWelcome()">Libros</a></li>
+            <li><a routerLink="/">Inicio</a></li>
+            <li><a routerLink="/libros">Libros</a></li>
             <li><a routerLink="/mi-perfil">Mi Perfil</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </nav>
 </header>
 
+<!-- Sección Welcome -->
 <div class="welcome" *ngIf="mostrarWelcome">
     <h3>Bienvenido</h3>
     <h5 class="intro">
@@ -26,46 +27,48 @@
         <li>• Eliminar todo tipo de Registros</li>
         <li>• Sección de Reportes de acciones en el sistema</li>
     </ul>
-
     <button class="delete-button" (click)="mostrarFormulario = true">Crear Libro</button>
 </div>
 
-<div *ngIf="mostrarFormulario">
-    <h2>Crear Libro</h2>
-    <form class="form" (ngSubmit)="createLibro()">
-        <div class="form-group">
-            <label>Título:</label>
-            <input [(ngModel)]="newLibro.titulo" name="titulo" required>
-        </div>
-        <div class="form-group">
-            <label>Edición:</label>
-            <input [(ngModel)]="newLibro.edicion" name="edicion" required>
-        </div>
-        <div class="form-group">
-            <label>Ejemplares:</label>
-            <input [(ngModel)]="newLibro.ejemplares" name="ejemplares" required>
-        </div>
-        <div class="form-group">
-            <label>Género:</label>
-            <input [(ngModel)]="newLibro.genero" name="genero" required>
-        </div>
-        <div class="form-group">
-            <label>Autor:</label>
-            <input [(ngModel)]="newLibro.autor" name="autor" required>
-        </div>
-        <div class="form-group">
-            <label>Contenido:</label>
-            <input [(ngModel)]="newLibro.contenido" name="contenido" required>
-        </div>
-        <div class="form-group">
-            <label>Portada:</label>
-            <input [(ngModel)]="newLibro.portada" name="portada">
-        </div>
-        <button type="submit" class="delete-button">Crear</button>
-        <button type="button" (click)="mostrarFormulario = false" class="delete-button">Cancelar</button>
-    </form>
+<!-- Ventana Modal para Crear Libro -->
+<div class="modal" *ngIf="mostrarFormulario">
+    <div class="modal-content">
+        <span class="close" (click)="mostrarFormulario = false">&times;</span>
+        <h2>Crear Libro</h2>
+        <form class="form" (ngSubmit)="createLibro()">
+            <div class="form-group">
+                <label>Título:</label>
+                <input [(ngModel)]="newLibro.titulo" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label>Edición:</label>
+                <input [(ngModel)]="newLibro.edicion" name="edicion" required>
+            </div>
+            <div class="form-group">
+                <label>Ejemplares:</label>
+                <input [(ngModel)]="newLibro.ejemplares" name="ejemplares" required>
+            </div>
+            <div class="form-group">
+                <label>Género:</label>
+                <input [(ngModel)]="newLibro.genero" name="genero" required>
+            </div>
+            <div class="form-group">
+                <label>Autor:</label>
+                <input [(ngModel)]="newLibro.autor" name="autor" required>
+            </div>
+            <div class="form-group">
+                <label>Contenido:</label>
+                <input [(ngModel)]="newLibro.contenido" name="contenido" required>
+            </div>
+            <div class="form-group">
+                <label>Portada:</label>
+                <input [(ngModel)]="newLibro.portada" name="portada">
+            </div>
+            <button type="submit" class="update-button">Crear</button>
+            <button type="button" (click)="mostrarFormulario = false" class="cancel-button">Cancelar</button>
+        </form>
+    </div>
 </div>
 
-<div *ngIf="!mostrarWelcome">
-    <router-outlet />
-</div>
+<!-- Sección Router Outlet -->
+<router-outlet></router-outlet>

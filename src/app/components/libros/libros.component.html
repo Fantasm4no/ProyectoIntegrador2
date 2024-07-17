@@ -1,63 +1,56 @@
-<div class="accordion" id="accordionExample">
-  <div *ngFor="let libro of libros; let i = index" class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse_' + i" aria-expanded="true" [attr.aria-controls]="'collapse_' + i">
-        {{ libro.titulo }}
-      </button>
-    </h2>
-    <div [attr.id]="'collapse_' + i" class="accordion-collapse collapse" [class.show]="i === 0" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <div class="book-card">
-          <img [src]="libro.portada" alt="Portada del libro" class="book-cover">
-          <div class="book-info">
-            <h5>{{ libro.titulo }}</h5>
-            <p>{{ libro.edicion }}ª edición</p>
-            <div class="book-details">
-              <strong>Ejemplares: </strong> {{libro.ejemplares }} <br>
-              <strong>Género:</strong> {{ libro.genero }} <br>
-              <strong>Autor:</strong> {{ libro.autor }} <br>
-              <strong>Contenido:</strong> {{ libro.contenido }} <br>
-              <button *ngIf="libro.libroId !== undefined" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
-              <button (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="libroEditIndex === i">
-          <h2>Actualizar Libro</h2>
-          <form class="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <label>Título:</label>
-              <input [(ngModel)]="newLibro.titulo" name="titulo" required>
-            </div>
-            <div class="form-group">
-              <label>Edición:</label>
-              <input [(ngModel)]="newLibro.edicion" name="edicion" required>
-            </div>
-            <div class="form-group">
-              <label>Ejemplares:</label>
-              <input [(ngModel)]="newLibro.ejemplares" name="edicion" required>
-            </div>
-            <div class="form-group">
-              <label>Género:</label>
-              <input [(ngModel)]="newLibro.genero" name="genero" required>
-            </div>
-            <div class="form-group">
-              <label>Autor:</label>
-              <input [(ngModel)]="newLibro.autor" name="autor" required>
-            </div>
-            <div class="form-group">
-              <label>Contenido:</label>
-              <input [(ngModel)]="newLibro.autor" name="autor" required>
-            </div>
-            <div class="form-group">
-              <label>Portada:</label>
-              <input [(ngModel)]="newLibro.portada" name="portada">
-            </div>
-            <button type="submit" class="delete-button">Actualizar</button>
-            <button type="button" class="delete-button" (click)="resetForm()">Cancelar</button>
-          </form>
-        </div>
+<br>
+<div *ngFor="let libro of libros; let i = index" class="accordion-item">
+  <div class="book-card">
+    <img [src]="libro.portada" alt="Portada del libro" class="book-cover">
+    <div class="book-info">
+      <h5>{{ libro.titulo }}</h5>
+      <p>{{ libro.edicion }}ª edición</p>
+      <div class="book-details">
+        <strong>Ejemplares: </strong> {{libro.ejemplares }} <br>
+        <strong>Género:</strong> {{ libro.genero }} <br>
+        <strong>Autor:</strong> {{ libro.autor }} <br>
+        <strong>Contenido:</strong> {{ libro.contenido }} <br>
+        <button *ngIf="libro.libroId !== undefined" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
+        <button (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
       </div>
+    </div>
+  </div>
+  <div class="modal" *ngIf="libroEditIndex === i">
+    <div class="modal-content">
+      <span class="close" (click)="resetForm()">&times;</span>
+      <h2>Actualizar Libro</h2>
+      <form class="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Título:</label>
+          <input [(ngModel)]="newLibro.titulo" name="titulo" required>
+        </div>
+        <div class="form-group">
+          <label>Edición:</label>
+          <input [(ngModel)]="newLibro.edicion" name="edicion" required>
+        </div>
+        <div class="form-group">
+          <label>Ejemplares:</label>
+          <input [(ngModel)]="newLibro.ejemplares" name="ejemplares" required>
+        </div>
+        <div class="form-group">
+          <label>Género:</label>
+          <input [(ngModel)]="newLibro.genero" name="genero" required>
+        </div>
+        <div class="form-group">
+          <label>Autor:</label>
+          <input [(ngModel)]="newLibro.autor" name="autor" required>
+        </div>
+        <div class="form-group">
+          <label>Contenido:</label>
+          <input [(ngModel)]="newLibro.contenido" name="contenido" required>
+        </div>
+        <div class="form-group">
+          <label>Portada:</label>
+          <input [(ngModel)]="newLibro.portada" name="portada">
+        </div>
+        <button type="submit" class="delete-button">Actualizar</button>
+        <button type="button" class="delete-button" (click)="resetForm()">Cancelar</button>
+      </form>
     </div>
   </div>
 </div>
