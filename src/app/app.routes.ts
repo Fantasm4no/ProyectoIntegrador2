@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { LibrosComponent } from './components/libros/libros.component';
-import { AppComponent } from './app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    { path: 'libros', component: LibrosComponent },
-    { path: '**', redirectTo: '' }
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'libros', component: LibrosComponent }
 ];

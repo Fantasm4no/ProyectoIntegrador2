@@ -8,7 +8,7 @@ import { Libro } from '../model/libro';
 })
 export class LibrosService {
 
-  private apiUrl = 'http://localhost:8080/biblioteca/rs/libro';
+  private apiUrl = 'http://localhost:8080/biblioteca/rs/libros';
   
   constructor(private http: HttpClient) { }
 
@@ -27,4 +27,10 @@ export class LibrosService {
   actualizarLibro(libro: Libro): Observable<Libro> {
     return this.http.put<Libro>(this.apiUrl, libro);
   }
+  
+  searchLibros(query: string): Observable<Libro[]> {
+    return this.http.get<Libro[]>(`${this.apiUrl}/buscar?titulo=${query}&autor=${query}&genero=${query}`);
+  }
+
+
 }

@@ -1,3 +1,24 @@
+<header class="header">
+  <h1>
+      <img class="ups" src="https://acortar.link/jSqLax" alt="Logo Ups"> Biblioteca
+  </h1>
+  <nav>
+      <ul class="nav_links">
+          <li><a routerLink="/dashboard">Inicio</a></li>
+          <li><a routerLink="/libros">Libros</a></li>
+          <li><a routerLink="/mi-perfil">Mi Perfil</a></li>
+          <li><a href="#">Logout</a></li>
+      </ul>
+  </nav>
+</header>
+
+<div class="search-container">
+  <form (ngSubmit)="searchLibros()">
+    <input [(ngModel)]="searchQuery" name="searchQuery" placeholder="Buscar por título, autor o género" required>
+    <button type="submit">Buscar</button>
+  </form>
+</div>
+
 <div class="book-container">
   <div *ngFor="let libro of libros; let i = index" class="accordion-item">
     <div class="book-card">
@@ -8,7 +29,6 @@
         <h5>{{ libro.titulo }}</h5>
         <p>{{ libro.edicion }}ª edición</p>
         <div class="book-details">
-          <strong>Ejemplares: </strong> {{libro.ejemplares }} <br>
           <strong>Género:</strong> {{ libro.genero }} <br>
           <strong>Autor:</strong> {{ libro.autor }} <br>
           <strong>Contenido:</strong> {{ libro.contenido }} <br>
@@ -29,10 +49,6 @@
           <div class="form-group">
             <label>Edición:</label>
             <input [(ngModel)]="newLibro.edicion" name="edicion" required>
-          </div>
-          <div class="form-group">
-            <label>Ejemplares:</label>
-            <input [(ngModel)]="newLibro.ejemplares" name="ejemplares" required>
           </div>
           <div class="form-group">
             <label>Género:</label>
