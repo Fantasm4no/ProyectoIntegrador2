@@ -6,8 +6,7 @@
       <ul class="nav_links">
           <li><a routerLink="/dashboard">Inicio</a></li>
           <li><a routerLink="/libros">Libros</a></li>
-          <li><a routerLink="/mi-perfil">Mi Perfil</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a routerLink="/prestamos">Prestamos</a></li>
       </ul>
   </nav>
 </header>
@@ -63,8 +62,9 @@
         <p><strong>Contenido:</strong> {{ libro.contenido }}</p>
       </div>
       <div class="book-actions">
-        <button *ngIf="libro.libroId !== undefined" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
-        <button (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
+        <button *ngIf="libro.libroId !== undefined && role === 'admin'" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
+        <button *ngIf="role === 'admin'" (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
+        <button class="delete-button" (click)="pedirLibro(libro.libroId)">Pedir</button>
       </div>
     </div>
     <div class="modal" *ngIf="libroEditIndex === i">

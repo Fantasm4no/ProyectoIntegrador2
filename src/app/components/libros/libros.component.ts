@@ -3,7 +3,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Libro } from '../../model/libro';
 import { LibrosService } from '../../services/libros.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-libros',
@@ -24,10 +25,12 @@ export class LibrosComponent implements OnInit {
   selectedCategory: string = '';
   selectedAuthor: string = '';
   selectedAvailability: string = '';
+  role: string | null = null;
 
-  constructor(private libroService: LibrosService) { }
+  constructor(private libroService: LibrosService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
     this.cargarLibros();
   }
 
@@ -88,4 +91,14 @@ export class LibrosComponent implements OnInit {
       this.actualizarLibro();
     }
   }
+
+  pedirLibro(libroId: number | undefined) {
+    if (libroId !== undefined) {
+      this.authService.setLibroId(libroId);
+      this.router.navigate(['/prestamos']); // Redirigir al componente Prestamo
+    } else {
+      console.error('No se encontró el id');
+    }
+  }
+  
 }

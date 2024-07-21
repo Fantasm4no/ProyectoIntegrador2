@@ -6,15 +6,14 @@
         <ul class="nav_links">
             <li><a routerLink="#">Inicio</a></li>
             <li><a routerLink="/libros">Libros</a></li>
-            <li><a routerLink="/mi-perfil">Mi Perfil</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a routerLink="/prestamos">Prestamos</a></li>
         </ul>
     </nav>
 </header>
 
 <!-- Sección Welcome -->
 <div class="welcome" *ngIf="mostrarWelcome">
-    <h3>{{username}} ¡Bienvenido a la Biblioteca Virtual! 📚</h3>
+    <h3>¡Bienvenido a la Biblioteca Virtual! 📚</h3>
     <h5 class="intro">
         Estamos encantados de tenerte aquí. En nuestra biblioteca, tendrás acceso a una amplia colección de libros y recursos que te permitirán explorar nuevos mundos, aprender sobre diversos temas y disfrutar de la lectura como nunca antes.
     </h5>
@@ -23,7 +22,7 @@
         <li>• Administra tus préstamos: Controla y realiza un seguimiento de tus libros prestados.</li> <br>
         <li>• Para acceder a nuestros libros porfavor hacer click en la parte superior "Libros"</li>
     </ul>
-    <button class="delete-button" (click)="mostrarFormulario = true">Crear Libro</button>
+    <button *ngIf="role === 'admin'" class="delete-button" (click)="mostrarFormulario = true">Crear Libro</button>
 </div>
 
 
@@ -57,8 +56,8 @@
                 <label>Portada:</label>
                 <input [(ngModel)]="newLibro.portada" name="portada">
             </div>
-            <button type="submit" class="update-button">Crear</button>
-            <button type="button" (click)="mostrarFormulario = false" class="cancel-button">Cancelar</button>
+            <button type="submit" class="delete-button">Crear</button>
+            <button type="button" (click)="mostrarFormulario = false" class="delete-button">Cancelar</button>
         </form>
     </div>
 </div>

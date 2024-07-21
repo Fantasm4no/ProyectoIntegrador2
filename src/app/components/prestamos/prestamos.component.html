@@ -1,0 +1,95 @@
+<header class="header">
+    <h1>
+        <img class="ups" src="https://acortar.link/jSqLax" alt="Logo Ups"> Biblioteca
+    </h1>
+    <nav>
+        <ul class="nav_links">
+            <li><a routerLink="/dashboard">Inicio</a></li>
+            <li><a routerLink="/libros">Libros</a></li>
+            <li><a routerLink="/prestamos">Prestamos</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="centered-form-container">
+  <form class="form-wrapper" #prestamoForm="ngForm" (ngSubmit)="createPrestamo()">
+    <div class="form-content">
+      <div class="form-section">
+        <h4>Usuario</h4>
+        <div class="form-group">
+          <label for="usuario">Id:</label>
+          <input type="number" id="usuarioId" name="usuarioId" [value]="usuarioActual?.usuarioId" [(ngModel)]="newPrestamo.usuario.usuarioId" readonly>
+        </div>
+        <div class="form-group">
+          <label for="usuario">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" [value]="usuarioActual?.username" [(ngModel)]="newPrestamo.usuario.username" readonly>
+        </div>
+        <div class="form-group">
+          <label for="usuario">Password:</label>
+          <input type="password" id="password" name="password" [value]="usuarioActual?.password" [(ngModel)]="newPrestamo.usuario.password" readonly>
+        </div>
+        <div class="form-group">
+          <label for="usuario">Email:</label>
+          <input type="email" id="email" name="email" [value]="usuarioActual?.email" [(ngModel)]="newPrestamo.usuario.email" readonly>
+        </div>
+        <div class="form-group">
+          <label for="usuario">Role:</label>
+          <input type="text" id="role" name="role" [value]="usuarioActual?.role" [(ngModel)]="newPrestamo.usuario.role" readonly>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h4>Libro</h4>
+        <div class="form-group">
+          <label for="libro">Id:</label>
+          <input type="number" id="libroId" name="libroId" [value]="libroActual?.libroId" [(ngModel)]="newPrestamo.libro.libroId" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">Titulo:</label>
+          <input type="text" id="titulo" name="titulo" [value]="libroActual?.titulo" [(ngModel)]="newPrestamo.libro.titulo" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">Edicion:</label>
+          <input type="text" id="edicion" name="edicion" [value]="libroActual?.edicion" [(ngModel)]="newPrestamo.libro.edicion" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">Genero:</label>
+          <input type="text" id="genero" name="genero" [value]="libroActual?.genero" [(ngModel)]="newPrestamo.libro.genero" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">Autor:</label>
+          <input type="text" id="autor" name="autor" [value]="libroActual?.autor" [(ngModel)]="newPrestamo.libro.autor" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">Contenido:</label>
+          <input id="contenido" name="contenido" [value]="libroActual?.contenido" [(ngModel)]="newPrestamo.libro.contenido" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">Portada:</label>
+          <input type="text" id="portada" name="portada" [value]="libroActual?.portada" [(ngModel)]="newPrestamo.libro.portada" readonly>
+        </div>
+        <div class="form-group">
+          <label for="libro">disponibilidad:</label>
+          <input type="text" id="disponibilidad" name="disponibilidad" [(ngModel)]="newPrestamo.libro.disponibilidad" readonly>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h4>Fechas</h4>
+        <div class="form-group">
+          <label for="fechaPrestamo">Fecha de Préstamo:</label>
+          <input type="date" id="fechaPrestamo" name="fechaPrestamo" required>
+        </div>
+        <div class="form-group">
+          <label for="fechaDevolucion">Fecha de Devolución:</label>
+          <input type="date" id="fechaDevolucion" name="fechaDevolucion" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="delete-button">Enviar</button>
+      <button type="button" class="delete-button">Cancelar</button>
+    </div>
+  </form>
+</div>

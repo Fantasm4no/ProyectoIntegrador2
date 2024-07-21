@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Libro } from '../model/libro';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Libro } from '../model/libro';
 export class LibrosService {
 
   private apiUrl = 'http://localhost:8080/biblioteca/rs/libros';
-  
+
   constructor(private http: HttpClient) { }
 
   obtenerLibros(): Observable<Libro[]> {
@@ -27,4 +27,9 @@ export class LibrosService {
   actualizarLibro(libro: Libro): Observable<Libro> {
     return this.http.put<Libro>(this.apiUrl, libro);
   }
+
+  libroPorId(id: number){
+    return this.http.get<Libro[]>(`${this.apiUrl}/${id}`)
+  }
+
 }
