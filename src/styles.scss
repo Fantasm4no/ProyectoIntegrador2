@@ -109,43 +109,51 @@ ul {
 
 .book-card {
     display: flex;
-    flex-direction: row;
-    margin: 0;
+    flex-direction: column;
+    width: 300px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #1f2937; /* Fondo oscuro similar al de la tarjeta de perfil */
+    color: #ffffff; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
 }
 
 .book-cover-container {
-    width: 160px;
-    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #f0f0f0;
+    margin-bottom: 15px;
 }
 
 .book-cover {
-    width: 100%;
-    height: auto;
+    width: 100px;
+    height: 150px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
-.book-info {
-    flex: 1;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
+.book-info h5 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.book-info p {
+    margin: 5px 0;
 }
 
 .book-details {
     margin-top: 10px;
     padding-top: 10px;
-    flex: 1;
+    border-top: 1px solid #444;
+    text-align: left;
 }
 
-.book-details strong {
-    font-weight: bold;
+.book-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .delete-button {
@@ -184,7 +192,6 @@ ul {
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     margin-top: 10px;
-    margin-right: 10px;
 }
 
 .delete-button:hover {
@@ -224,7 +231,7 @@ ul {
 }
 
 .modal-content {
-    background-color: #34495e;
+    background-image: url('https://i.pinimg.com/originals/97/57/93/975793fff4eb682dcc396c2885a13f2f.jpg');
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -251,4 +258,45 @@ ul {
     margin-top: 10px;
     padding: 10px 20px;
     border: none;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background-color: #1f2937; /* Fondo oscuro */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+.search-form input,
+.search-form select,
+.search-form button {
+    border: none;
+    padding: 10px;
+    border-radius: 5px; /* Bordes más suaves */
+    font-size: 16px;
+}
+
+.search-form input {
+    width: 250px; /* Ancho del input */
+    outline: none;
+}
+
+.search-form input::placeholder {
+    color: #ccc; /* Color del placeholder */
+}
+
+.search-form select {
+    background-color: #2d3748; /* Fondo del select */
+    color: #fff; /* Color del texto */
 }

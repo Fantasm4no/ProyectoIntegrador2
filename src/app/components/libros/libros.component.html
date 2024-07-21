@@ -13,28 +13,58 @@
 </header>
 
 <div class="search-container">
-  <form (ngSubmit)="searchLibros()">
-    <input [(ngModel)]="searchQuery" name="searchQuery" placeholder="Buscar por título, autor o género" required>
-    <button type="submit">Buscar</button>
+  <form class="search-form" (ngSubmit)="filtrarLibros()">
+    <input 
+      type="text" 
+      name="searchTerm" 
+      placeholder="Buscar por título"
+      [(ngModel)]="searchTerm"
+      (input)="filtrarLibros()"
+    >
+    <select 
+      name="category" 
+      [(ngModel)]="selectedCategory"
+      (change)="filtrarLibros()"
+    >
+      <option value="">Todas las categorías</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+    </select>
+    <select 
+      name="author" 
+      [(ngModel)]="selectedAuthor"
+      (change)="filtrarLibros()"
+    >
+      <option value="">Todos los autores</option>
+      <option *ngFor="let autor of autores" [value]="autor">{{ autor }}</option>
+    </select>
+    <select 
+      name="availability" 
+      [(ngModel)]="selectedAvailability"
+      (change)="filtrarLibros()"
+    >
+      <option value="">Todos</option>
+      <option value="disponible">Disponibles</option>
+      <option value="no-disponible">No disponibles</option>
+    </select>
   </form>
 </div>
 
 <div class="book-container">
-  <div *ngFor="let libro of libros; let i = index" class="accordion-item">
-    <div class="book-card">
-      <div class="book-cover-container">
-        <img [src]="libro.portada" alt="Portada del libro" class="book-cover">
+  <div *ngFor="let libro of filteredLibros; let i = index" class="book-card">
+    <div class="book-cover-container">
+      <img [src]="libro.portada" alt="Portada del libro" class="book-cover">
+    </div>
+    <div class="book-info">
+      <h5>{{ libro.titulo }}</h5>
+      <p>{{ libro.edicion }}ª edición</p>
+      <div class="book-details">
+        <p><strong>Género:</strong> {{ libro.genero }}</p>
+        <p><strong>Autor:</strong> {{ libro.autor }}</p>
+        <p><strong>Contenido:</strong> {{ libro.contenido }}</p>
       </div>
-      <div class="book-info">
-        <h5>{{ libro.titulo }}</h5>
-        <p>{{ libro.edicion }}ª edición</p>
-        <div class="book-details">
-          <strong>Género:</strong> {{ libro.genero }} <br>
-          <strong>Autor:</strong> {{ libro.autor }} <br>
-          <strong>Contenido:</strong> {{ libro.contenido }} <br>
-          <button *ngIf="libro.libroId !== undefined" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
-          <button (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
-        </div>
+      <div class="book-actions">
+        <button *ngIf="libro.libroId !== undefined" (click)="eliminarLibro(libro.libroId)" class="delete-button">Eliminar</button>
+        <button (click)="seleccionarLibro(libro, i)" class="delete-button">Editar</button>
       </div>
     </div>
     <div class="modal" *ngIf="libroEditIndex === i">

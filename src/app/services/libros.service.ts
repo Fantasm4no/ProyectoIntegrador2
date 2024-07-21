@@ -27,10 +27,4 @@ export class LibrosService {
   actualizarLibro(libro: Libro): Observable<Libro> {
     return this.http.put<Libro>(this.apiUrl, libro);
   }
-  
-  searchLibros(query: string): Observable<Libro[]> {
-    return this.http.get<Libro[]>(`${this.apiUrl}/buscar?titulo=${query}&autor=${query}&genero=${query}`);
-  }
-
-
 }
