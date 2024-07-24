@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
           }
           if (decodedToken.role) {
             this.authService.setRole(decodedToken.role);
+            localStorage.setItem('userRole', decodedToken.role); // Almacenar el rol en localStorage
             this.role = this.authService.getRole();
           } else {
             console.log('Campo de rol no encontrado en el token');
@@ -50,6 +51,9 @@ export class DashboardComponent implements OnInit {
           console.log('Username:', this.authService.getUsername);
           console.log('Role:', this.authService.getRole);
         }
+      } else {
+        // Recuperar el rol del localStorage si no hay token en los parámetros
+        this.role = localStorage.getItem('userRole');
       }
     });
   }
@@ -66,4 +70,12 @@ export class DashboardComponent implements OnInit {
     this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true };
     this.mostrarFormulario = false; // Oculta el formulario al reiniciarlo
   }
+
+  logout() {
+    // Redirigir a la página de logout en tu servidor Java
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userRole');
+    window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml';
+  }
+
 }
