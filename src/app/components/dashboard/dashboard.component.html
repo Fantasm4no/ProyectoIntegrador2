@@ -7,6 +7,7 @@
             <li><a routerLink="#">Inicio</a></li>
             <li><a routerLink="/libros">Libros</a></li>
             <li><a routerLink="/prestamos">Prestamos</a></li>
+            <li><a (click)="logout()">Logout</a></li>
         </ul>
     </nav>
 </header>
@@ -24,7 +25,6 @@
     </ul>
     <button *ngIf="role === 'admin'" class="delete-button" (click)="mostrarFormulario = true">Crear Libro</button>
 </div>
-
 
 <!-- Ventana Modal para Crear Libro -->
 <div class="modal" *ngIf="mostrarFormulario">
@@ -61,3 +61,4 @@
         </form>
     </div>
 </div>
+
