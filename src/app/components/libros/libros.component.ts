@@ -100,5 +100,10 @@ export class LibrosComponent implements OnInit {
       console.error('No se encontró el id');
     }
   }
+  logout() {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('role');
+    window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml';
+  }
   
 }
