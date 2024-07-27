@@ -24,7 +24,7 @@ export class LibrosComponent implements OnInit {
   searchTerm: string = '';
   selectedCategory: string = '';
   selectedAuthor: string = '';
-  selectedAvailability: string = '';
+  selectedAvailability: string = 'disponible';
   role: string | null = null;
 
   constructor(private libroService: LibrosService, private authService: AuthService, private router: Router) { }
@@ -41,6 +41,7 @@ export class LibrosComponent implements OnInit {
         this.filteredLibros = data;
         this.categorias = [...new Set(data.map(libro => libro.genero))]; 
         this.autores = [...new Set(data.map(libro => libro.autor))]; 
+        this.filtrarLibros();
       },
       error: (error: any) => console.error('Error al cargar libros:', error)
     });
@@ -94,12 +95,31 @@ export class LibrosComponent implements OnInit {
 
   pedirLibro(libroId: number | undefined) {
     if (libroId !== undefined) {
-      this.authService.setLibroId(libroId);
-      this.router.navigate(['/prestamos']); // Redirigir al componente Prestamo
+      const libro = this.libros.find(libro => libro.libroId === libroId);
+      if (libro) {
+        // Guardar la disponibilidad original
+        const disponibilidadOriginal = libro.disponibilidad;
+  
+        // Actualizar la disponibilidad del libro a false
+        libro.disponibilidad = false;
+        this.libroService.actualizarLibro(libro).subscribe({
+          next: () => {
+            console.log('Libro actualizado a no disponible:', libro);
+            this.authService.setLibroId(libroId);
+            this.authService.setDisponibilidadOriginal(disponibilidadOriginal); // Guardar disponibilidad original en el servicio AuthService
+            this.router.navigate(['/prestamos']); // Redirigir al componente Prestamo
+          },
+          error: (error) => console.error('Error al actualizar libro:', error)
+        });
+      } else {
+        console.error('Libro no encontrado para el ID:', libroId);
+      }
     } else {
       console.error('No se encontró el id');
     }
   }
+  
+
   logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('role');

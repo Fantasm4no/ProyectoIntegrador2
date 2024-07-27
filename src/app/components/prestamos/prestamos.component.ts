@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Usuario } from '../../model/usuario';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,7 +49,8 @@ export class PrestamosComponent implements OnInit {
   };
 
   constructor(private authService: AuthService, private userService: UsuariosService, 
-              private libroService: LibrosService, private prestamoService: PrestamosService) {}
+              private libroService: LibrosService, private prestamoService: PrestamosService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.username = this.authService.getUsername();
@@ -106,24 +107,50 @@ export class PrestamosComponent implements OnInit {
 
   createPrestamo(): void {
     if (this.usuarioActual && this.libroActual) {
-      this.newPrestamo.usuario = this.usuarioActual;
-      this.newPrestamo.libro = this.libroActual;
+        this.newPrestamo.usuario = this.usuarioActual;
+        this.newPrestamo.libro = this.libroActual;
 
-      // Convertir los objetos Date a cadenas en formato ISO 8601
-      const fechaPrestamo = (document.getElementById('fechaPrestamo') as HTMLInputElement).value;
-      const fechaDevolucion = (document.getElementById('fechaDevolucion') as HTMLInputElement).value;
-      this.newPrestamo.fechaPrestamo = new Date(fechaPrestamo).toISOString();
-      this.newPrestamo.fechaDevolucion = new Date(fechaDevolucion).toISOString();
+        const fechaPrestamoInput = (document.getElementById('fechaPrestamo') as HTMLInputElement).value;
+        const fechaDevolucionInput = (document.getElementById('fechaDevolucion') as HTMLInputElement).value;
 
-      this.prestamoService.guardarPrestamo(this.newPrestamo).subscribe(prestamo => {
-        if (!this.prestamos) this.prestamos = [];
-        this.prestamos.push(prestamo);
-        this.resetForm();
-      });
+        if (fechaPrestamoInput && fechaDevolucionInput) {
+            // Crear objeto Date a partir del valor de la entrada
+            const fechaPrestamo = new Date(fechaPrestamoInput);
+            const fechaDevolucion = new Date(fechaDevolucionInput);
+
+            // Ajustar la fecha para considerar la zona horaria local
+            const offsetMs = fechaPrestamo.getTimezoneOffset() * 60 * 1000;
+            const fechaPrestamoLocal = new Date(fechaPrestamo.getTime() + offsetMs);
+            const fechaDevolucionLocal = new Date(fechaDevolucion.getTime() + offsetMs);
+
+            // Obtener la hora actual
+            const now = new Date();
+            const currentHours = now.getHours();
+            const currentMinutes = now.getMinutes();
+            const currentSeconds = now.getSeconds();
+
+            // Establecer la hora actual en las fechas seleccionadas
+            fechaPrestamoLocal.setHours(currentHours, currentMinutes, currentSeconds, 0);
+            fechaDevolucionLocal.setHours(currentHours, currentMinutes, currentSeconds, 0);
+
+            this.newPrestamo.fechaPrestamo = fechaPrestamoLocal.toISOString();
+            this.newPrestamo.fechaDevolucion = fechaDevolucionLocal.toISOString();
+
+            this.prestamoService.guardarPrestamo(this.newPrestamo).subscribe(prestamo => {
+                if (!this.prestamos) this.prestamos = [];
+                this.prestamos.push(prestamo);
+                this.resetForm();
+                this.router.navigate(['/libros']);
+            });
+        } else {
+            console.error('Fecha de préstamo o devolución no proporcionada.');
+        }
     } else {
-      console.error('Usuario o libro actual no encontrado.');
+        console.error('Usuario o libro actual no encontrado.');
     }
   }
+
+
 
   resetForm(): void {
     this.newPrestamo = {
@@ -148,6 +175,27 @@ export class PrestamosComponent implements OnInit {
       }
     };
   }
+
+  cancelar(): void {
+    const libroId = this.authService.getLibroId();
+    const disponibilidadOriginal = this.authService.getDisponibilidadOriginal();
+    if (libroId !== null && disponibilidadOriginal !== null) {
+      const libro = this.libros.find(libro => libro.libroId === libroId);
+      if (libro) {
+        libro.disponibilidad = disponibilidadOriginal;
+        this.libroService.actualizarLibro(libro).subscribe({
+          next: () => {
+            console.log('Disponibilidad del libro restaurada:', libro);
+            this.router.navigate(['/libros']); // Redirigir al componente Libros
+          },
+          error: (error) => console.error('Error al restaurar disponibilidad del libro:', error)
+        });
+      } else {
+        console.error('Libro no encontrado para el ID:', libroId);
+      }
+    }
+  }
+
   logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('role');

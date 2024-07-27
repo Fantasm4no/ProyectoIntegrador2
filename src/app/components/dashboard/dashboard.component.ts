@@ -17,6 +17,7 @@ import { jwtDecode } from 'jwt-decode';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  
   libros?: Libro[];
   newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true };
   mostrarFormulario: boolean = false;

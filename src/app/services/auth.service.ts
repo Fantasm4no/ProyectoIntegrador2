@@ -6,9 +6,9 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  private _role: string | null = null;
-  private _username: string | null = null;
+
   private _libroId: number | null = null;
+  private disponibilidadOriginal: boolean | null = null;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -76,6 +76,14 @@ export class AuthService {
 
   getLibroId() {
     return this._libroId;
+  }
+
+  setDisponibilidadOriginal(disponibilidad: boolean) {
+    this.disponibilidadOriginal = disponibilidad;
+  }
+
+  getDisponibilidadOriginal(): boolean | null {
+    return this.disponibilidadOriginal;
   }
 }
 
