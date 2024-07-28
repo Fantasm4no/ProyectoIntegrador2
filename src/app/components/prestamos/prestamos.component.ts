@@ -57,6 +57,13 @@ export class PrestamosComponent implements OnInit {
     this.libroId = this.authService.getLibroId();
     this.cargarUsuarios();
     this.cargarLibros();
+
+    // Establecer la fecha actual en el campo de fecha de préstamo
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    this.newPrestamo.fechaPrestamo = `${year}-${month}-${day}`;
   }
 
   cargarUsuarios(): void {
@@ -107,55 +114,45 @@ export class PrestamosComponent implements OnInit {
 
   createPrestamo(): void {
     if (this.usuarioActual && this.libroActual) {
-        this.newPrestamo.usuario = this.usuarioActual;
-        this.newPrestamo.libro = this.libroActual;
+      this.newPrestamo.usuario = this.usuarioActual;
+      this.newPrestamo.libro = this.libroActual;
 
-        const fechaPrestamoInput = (document.getElementById('fechaPrestamo') as HTMLInputElement).value;
-        const fechaDevolucionInput = (document.getElementById('fechaDevolucion') as HTMLInputElement).value;
+      const fechaDevolucionInput = (document.getElementById('fechaDevolucion') as HTMLInputElement).value;
 
-        if (fechaPrestamoInput && fechaDevolucionInput) {
-            // Crear objeto Date a partir del valor de la entrada
-            const fechaPrestamo = new Date(fechaPrestamoInput);
-            const fechaDevolucion = new Date(fechaDevolucionInput);
+      if (fechaDevolucionInput) {
+        const fechaDevolucion = new Date(fechaDevolucionInput);
 
-            // Ajustar la fecha para considerar la zona horaria local
-            const offsetMs = fechaPrestamo.getTimezoneOffset() * 60 * 1000;
-            const fechaPrestamoLocal = new Date(fechaPrestamo.getTime() + offsetMs);
-            const fechaDevolucionLocal = new Date(fechaDevolucion.getTime() + offsetMs);
+        // Obtener la fecha y hora actuales
+        const now = new Date();
 
-            // Obtener la hora actual
-            const now = new Date();
-            const currentHours = now.getHours();
-            const currentMinutes = now.getMinutes();
-            const currentSeconds = now.getSeconds();
+        // Establecer la hora actual en la fecha de préstamo seleccionada
+        const fechaPrestamoLocal = new Date(now);
+        fechaPrestamoLocal.setHours(now.getHours(), now.getMinutes(), now.getSeconds(), 0);
 
-            // Establecer la hora actual en las fechas seleccionadas
-            fechaPrestamoLocal.setHours(currentHours, currentMinutes, currentSeconds, 0);
-            fechaDevolucionLocal.setHours(currentHours, currentMinutes, currentSeconds, 0);
+        const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+        const fechaDevolucionLocal = new Date(fechaDevolucion.getTime() + offsetMs);
 
-            this.newPrestamo.fechaPrestamo = fechaPrestamoLocal.toISOString();
-            this.newPrestamo.fechaDevolucion = fechaDevolucionLocal.toISOString();
+        this.newPrestamo.fechaPrestamo = fechaPrestamoLocal.toISOString();
+        this.newPrestamo.fechaDevolucion = fechaDevolucionLocal.toISOString();
 
-            this.prestamoService.guardarPrestamo(this.newPrestamo).subscribe(prestamo => {
-                if (!this.prestamos) this.prestamos = [];
-                this.prestamos.push(prestamo);
-                this.resetForm();
-                this.router.navigate(['/libros']);
-            });
-        } else {
-            console.error('Fecha de préstamo o devolución no proporcionada.');
-        }
+        this.prestamoService.guardarPrestamo(this.newPrestamo).subscribe(prestamo => {
+          if (!this.prestamos) this.prestamos = [];
+          this.prestamos.push(prestamo);
+          this.resetForm();
+          this.router.navigate(['/libros']);
+        });
+      } else {
+        console.error('Fecha de devolución no proporcionada.');
+      }
     } else {
-        console.error('Usuario o libro actual no encontrado.');
+      console.error('Usuario o libro actual no encontrado.');
     }
   }
 
-
-
   resetForm(): void {
     this.newPrestamo = {
-      fechaPrestamo: new Date().toISOString(),
-      fechaDevolucion: new Date().toISOString(),
+      fechaPrestamo: '',
+      fechaDevolucion: '',
       libro: {
         libroId: 0,
         titulo: '',
@@ -174,6 +171,13 @@ export class PrestamosComponent implements OnInit {
         role: ''
       }
     };
+
+    // Restablecer el campo de fecha de préstamo con la fecha actual
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    this.newPrestamo.fechaPrestamo = `${year}-${month}-${day}`;
   }
 
   cancelar(): void {
@@ -186,7 +190,7 @@ export class PrestamosComponent implements OnInit {
         this.libroService.actualizarLibro(libro).subscribe({
           next: () => {
             console.log('Disponibilidad del libro restaurada:', libro);
-            this.router.navigate(['/libros']); // Redirigir al componente Libros
+            this.router.navigate(['/libros']);
           },
           error: (error) => console.error('Error al restaurar disponibilidad del libro:', error)
         });
