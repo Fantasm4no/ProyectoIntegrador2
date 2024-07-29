@@ -9,6 +9,7 @@ import { LibrosService } from '../../services/libros.service';
 import { Libro } from '../../model/libro';
 import { PrestamosService } from '../../services/prestamos.service';
 import { Prestamo } from '../../model/prestamo';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-prestamos',
@@ -18,7 +19,7 @@ import { Prestamo } from '../../model/prestamo';
   styleUrls: ['./prestamos.component.scss']
 })
 export class PrestamosComponent implements OnInit {
-
+  decodedToken: any;
   prestamos?: Prestamo[];
   username: string | null = null;
   usuarios: Usuario[] = [];
@@ -54,6 +55,7 @@ export class PrestamosComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.authService.getUsername();
+    console.log('Username obtenido:', this.username); // Añade este log para verificar el usernam
     this.libroId = this.authService.getLibroId();
     this.cargarUsuarios();
     this.cargarLibros();
@@ -64,6 +66,17 @@ export class PrestamosComponent implements OnInit {
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     this.newPrestamo.fechaPrestamo = `${year}-${month}-${day}`;
+
+    console.log('Usuario Actual:', this.usuarioActual);
+    console.log('Libro Actual:', this.libroActual);
+  }
+  decodeToken(): void {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      this.decodedToken = jwtDecode(token);
+    } else {
+      console.log('No hay token en el almacenamiento local.');
+    }
   }
 
   cargarUsuarios(): void {
@@ -93,6 +106,7 @@ export class PrestamosComponent implements OnInit {
   filtrarUsuarioActual(): void {
     if (this.username) {
       this.usuarioActual = this.usuarios.find(usuario => usuario.username === this.username) || null;
+      console.log('Usuario actual filtrado:', this.usuarioActual); // Añade este log para verificar el usuario encontrado
       if (this.usuarioActual) {
         console.log('Usuario encontrado:', this.usuarioActual);
       } else {
@@ -100,6 +114,7 @@ export class PrestamosComponent implements OnInit {
       }
     }
   }
+  
 
   filtrarLibroActual(): void {
     if (this.libroId) {
@@ -203,6 +218,7 @@ export class PrestamosComponent implements OnInit {
   logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('role');
+    localStorage.removeItem('username');
     window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml';
   }
 }

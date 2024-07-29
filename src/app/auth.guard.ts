@@ -2,30 +2,27 @@
 import { AuthService } from './services/auth.service';
 import { CanActivateFn, Router } from '@angular/router';
 import { inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser} from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService); // Inyecta el servicio de autenticación
-  const router = inject(Router); // Inyecta el router para redirección
-  const platformId = inject(PLATFORM_ID); // Inyecta el PLATFORM_ID para verificar el entorno
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
 
-  // Verifica si el usuario está autenticado
   if (isPlatformBrowser(platformId)) {
-    const token = authService.getToken();
-    
-    if (token) {
-      // Si el token está presente, el usuario está autenticado
+    // Solo ejecutamos la lógica de guardia en el navegador
+    if (authService.isAuthenticated()) {
       return true;
     } else {
-      setTimeout(() => {
-        window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml'; 
-      }, 1000);
+      window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml'; 
       return false;
     }
   } else {
-    return false;
+    // Si no estamos en el navegador, permitimos el acceso
+    return true;
   }
 };
+
 
 
 
