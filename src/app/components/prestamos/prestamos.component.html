@@ -54,6 +54,17 @@
           <label for="usuario">Email:</label>
           <input type="email" id="email" name="email" [value]="usuarioActual?.email" [(ngModel)]="newPrestamo.usuario.email" readonly>
         </div>
+        <div class="form-section">
+          <h4>Fechas</h4>
+          <div class="form-group">
+              <label for="fechaPrestamo">Fecha de Préstamo:</label>
+              <input type="date" id="fechaPrestamo" name="fechaPrestamo" [(ngModel)]="newPrestamo.fechaPrestamo" readonly>
+          </div>
+          <div class="form-group">
+              <label for="fechaDevolucion">Fecha de Devolución:</label>
+              <input type="date" id="fechaDevolucion" name="fechaDevolucion" required>
+          </div>
+        </div>  
       </div>
 
       <div class="form-section">
@@ -80,7 +91,7 @@
         </div>
         <div class="form-group">
           <label for="libro">Contenido:</label>
-          <input id="contenido" name="contenido" [value]="libroActual?.contenido" [(ngModel)]="newPrestamo.libro.contenido" readonly>
+          <input type="text" id="contenido" name="contenido" [value]="libroActual?.contenido" [(ngModel)]="newPrestamo.libro.contenido" readonly>
         </div>
         <div class="form-group">
           <label for="libro">Portada:</label>
@@ -92,17 +103,7 @@
         </div>
       </div>
 
-      <div class="form-section">
-        <h4>Fechas</h4>
-        <div class="form-group">
-            <label for="fechaPrestamo">Fecha de Préstamo:</label>
-            <input type="date" id="fechaPrestamo" name="fechaPrestamo" [(ngModel)]="newPrestamo.fechaPrestamo" readonly>
-        </div>
-        <div class="form-group">
-            <label for="fechaDevolucion">Fecha de Devolución:</label>
-            <input type="date" id="fechaDevolucion" name="fechaDevolucion" required>
-        </div>
-      </div>   
+ 
     </div>
     <div class="button-container">
       <button type="submit" class="delete-button">Enviar</button>
