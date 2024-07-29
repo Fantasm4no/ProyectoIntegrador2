@@ -47,24 +47,12 @@
       <div class="form-section">
         <h4>Usuario</h4>
         <div class="form-group">
-          <label for="usuario">Id:</label>
-          <input type="number" id="usuarioId" name="usuarioId" [value]="usuarioActual?.usuarioId" [(ngModel)]="newPrestamo.usuario.usuarioId" readonly>
-        </div>
-        <div class="form-group">
           <label for="usuario">Nombre:</label>
           <input type="text" id="nombre" name="nombre" [value]="usuarioActual?.username" [(ngModel)]="newPrestamo.usuario.username" readonly>
         </div>
         <div class="form-group">
-          <label for="usuario">Password:</label>
-          <input type="password" id="password" name="password" [value]="usuarioActual?.password" [(ngModel)]="newPrestamo.usuario.password" readonly>
-        </div>
-        <div class="form-group">
           <label for="usuario">Email:</label>
           <input type="email" id="email" name="email" [value]="usuarioActual?.email" [(ngModel)]="newPrestamo.usuario.email" readonly>
-        </div>
-        <div class="form-group">
-          <label for="usuario">Role:</label>
-          <input type="text" id="role" name="role" [value]="usuarioActual?.role" [(ngModel)]="newPrestamo.usuario.role" readonly>
         </div>
       </div>
 

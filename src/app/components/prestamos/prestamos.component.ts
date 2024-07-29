@@ -55,7 +55,6 @@ export class PrestamosComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.authService.getUsername();
-    console.log('Username obtenido:', this.username); // Añade este log para verificar el usernam
     this.libroId = this.authService.getLibroId();
     this.cargarUsuarios();
     this.cargarLibros();
@@ -67,9 +66,18 @@ export class PrestamosComponent implements OnInit {
     const day = String(today.getDate()).padStart(2, '0');
     this.newPrestamo.fechaPrestamo = `${year}-${month}-${day}`;
 
-    console.log('Usuario Actual:', this.usuarioActual);
-    console.log('Libro Actual:', this.libroActual);
+    // Cargar la disponibilidad original del libro
+    const disponibilidadOriginal = this.authService.getDisponibilidadOriginal();
+    if (this.libroId !== null && disponibilidadOriginal !== null) {
+        const libro = this.libros.find(libro => libro.libroId === this.libroId);
+        if (libro) {
+            this.newPrestamo.libro.disponibilidad = disponibilidadOriginal;
+        } else {
+            console.error('Libro no encontrado para el ID:', this.libroId);
+        }
+    }
   }
+
   decodeToken(): void {
     const token = localStorage.getItem('jwtToken');
     if (token) {
@@ -150,11 +158,22 @@ export class PrestamosComponent implements OnInit {
         this.newPrestamo.fechaPrestamo = fechaPrestamoLocal.toISOString();
         this.newPrestamo.fechaDevolucion = fechaDevolucionLocal.toISOString();
 
+        // Actualizar la disponibilidad del libro a false
+        this.newPrestamo.libro.disponibilidad = false;
+
         this.prestamoService.guardarPrestamo(this.newPrestamo).subscribe(prestamo => {
           if (!this.prestamos) this.prestamos = [];
           this.prestamos.push(prestamo);
-          this.resetForm();
-          this.router.navigate(['/libros']);
+
+          // Actualizar la disponibilidad del libro en el servidor
+          this.libroService.actualizarLibro(this.newPrestamo.libro).subscribe({
+            next: () => {
+              console.log('Libro actualizado a no disponible:', this.newPrestamo.libro);
+              this.resetForm();
+              this.router.navigate(['/libros']);
+            },
+            error: (error) => console.error('Error al actualizar libro:', error)
+          });
         });
       } else {
         console.error('Fecha de devolución no proporcionada.');

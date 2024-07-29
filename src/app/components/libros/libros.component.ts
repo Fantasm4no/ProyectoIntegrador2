@@ -97,20 +97,10 @@ export class LibrosComponent implements OnInit {
     if (libroId !== undefined) {
       const libro = this.libros.find(libro => libro.libroId === libroId);
       if (libro) {
-        // Guardar la disponibilidad original
-        const disponibilidadOriginal = libro.disponibilidad;
-  
-        // Actualizar la disponibilidad del libro a false
-        libro.disponibilidad = false;
-        this.libroService.actualizarLibro(libro).subscribe({
-          next: () => {
-            console.log('Libro actualizado a no disponible:', libro);
-            this.authService.setLibroId(libroId);
-            this.authService.setDisponibilidadOriginal(disponibilidadOriginal); // Guardar disponibilidad original en el servicio AuthService
-            this.router.navigate(['/prestamos']); // Redirigir al componente Prestamo
-          },
-          error: (error) => console.error('Error al actualizar libro:', error)
-        });
+        // Guardar el libro seleccionado y su disponibilidad original en el servicio AuthService
+        this.authService.setLibroId(libroId);
+        this.authService.setDisponibilidadOriginal(libro.disponibilidad); // Guardar disponibilidad original
+        this.router.navigate(['/prestamos']); // Redirigir al componente Prestamo
       } else {
         console.error('Libro no encontrado para el ID:', libroId);
       }
@@ -118,6 +108,7 @@ export class LibrosComponent implements OnInit {
       console.error('No se encontró el id');
     }
   }
+
   
 
   logout() {
