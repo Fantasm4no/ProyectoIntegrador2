@@ -123,6 +123,7 @@ export class LibrosComponent implements OnInit {
   logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('role');
+    localStorage.removeItem('username');
     window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml';
   }
   

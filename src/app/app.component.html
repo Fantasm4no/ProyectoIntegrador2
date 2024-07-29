@@ -1,3 +1,8 @@
-
-<!-- Sección Router Outlet -->
-<router-outlet></router-outlet>
+<!-- Mostrar componente de carga solo si isLoading es verdadero -->
+<div *ngIf="isLoading">
+    <app-loading></app-loading>
+  </div>
+  
+  <!-- Mostrar el contenido principal solo si no está en carga -->
+  <router-outlet *ngIf="!isLoading"></router-outlet>
+  
