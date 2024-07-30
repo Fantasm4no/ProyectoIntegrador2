@@ -28,8 +28,8 @@ export class PrestamosService {
     return this.http.post<void>(`${this.apiUrl}/devolver/${prestamoId}`, {});
   }
 
-  obtenerPrestamosNoEntregados(): Observable<Prestamo[]> {
-    return this.http.get<Prestamo[]>(`${this.apiUrl}/entregados`);
+  obtenerPrestamosNoEntregadosPorUsuario(username: string): Observable<Prestamo[]> {
+    return this.http.get<Prestamo[]>(`${this.apiUrl}/entregados/usuario/${username}`);
   }
 
   entregarPrestamo(prestamoId: number): Observable<void> {

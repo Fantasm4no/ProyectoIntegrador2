@@ -26,31 +26,11 @@ export class DevolucionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
-      this.cargarDevolucionesPendientes();
-      this.cargarEntregasPendientes()
-  }
-
-  cargarUsuarios(): void {
-    this.userService.obtenerUsuarios().subscribe({
-      next: (data: Usuario[]) => {
-        this.usuarios = data;
-        this.filtrarUsuarioActual();
-      },
-      error: (error) => {
-        console.error('Error al cargar usuarios:', error);
-      }
-    });
-  }
-
-  filtrarUsuarioActual(): void {
-    if (this.username) {
-      this.usuarioActual = this.usuarios.find(usuario => usuario.username === this.username) || null;
-      console.log('Usuario actual filtrado:', this.usuarioActual); // Añade este log para verificar el usuario encontrado
-      if (this.usuarioActual) {
-        console.log('Usuario encontrado:', this.usuarioActual);
-      } else {
-        console.log('Usuario no encontrado');
-      }
+    this.username = this.authService.getUsername(); // Asegúrate de que esto se está estableciendo correctamente
+    console.log('Username:', this.username); // Agrega un log para verificar el valor de username
+    this.cargarEntregasPendientes()
+    if(this.role == "admin"){
+      this.cargarDevolucionesPendientes()
     }
   }
 
@@ -67,23 +47,28 @@ export class DevolucionesComponent implements OnInit {
   }
 
   cargarEntregasPendientes(): void {
-    this.prestamoService.obtenerPrestamosNoEntregados().subscribe({
-      next: (data: Prestamo[]) => {
-        console.log('Prestamos activos recibidos:', data); // Log de los datos recibidos
-        this.prestamos = data;
-      },
-      error: (error) => {
-        console.error('Error al cargar devoluciones pendientes:', error);
-      }
-    });
+    if (this.username) {
+      this.prestamoService.obtenerPrestamosNoEntregadosPorUsuario(this.username).subscribe({
+        next: (data: Prestamo[]) => {
+          console.log('Préstamos no entregados recibidos:', data);
+          this.prestamos = data;
+        },
+        error: (error) => {
+          console.error('Error al cargar entregas pendientes:', error);
+        }
+      });
+    } else {
+      console.error('No se puede cargar entregas pendientes, username no disponible');
+    }
   }
+  
 
-  devolverPrestamo(prestamoId: number): void {
+   devolverPrestamo(prestamoId: number): void {
     this.prestamoService.devolverPrestamo(prestamoId).subscribe({
       next: () => {
         console.log('Préstamo devuelto con éxito');
-        // Volver a cargar las devoluciones pendientes
-        this.cargarDevolucionesPendientes();
+        // Volver a cargar las entregas pendientes
+        this.cargarEntregasPendientes();
       },
       error: (error) => {
         console.error('Error al devolver el préstamo:', error);
