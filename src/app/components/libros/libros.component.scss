@@ -1,7 +1,52 @@
 /* General Header Styles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .book-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .nav-list {
+        flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin-bottom: 10px; /* Espacio entre los elementos de navegación */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px;
+    }
+
+    .nav_links {
+        font-size: 14px;
+    }
+
+    .welcome {
+        font-size: 14px;
+    }
+
+    .book-card {
+        width: 100%;
+    }
+}
 .header {
     padding: 1.2rem;
     background-color: #00040a;
+    overflow: hidden; /* Evita el desbordamiento */
 }
 
 .logo {
@@ -14,6 +59,8 @@
 /* Navigation Styles */
 .nav {
     display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
+    gap: 10px; /* Espacio entre los elementos de navegación */
     padding: 0.75rem 1.25rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
@@ -23,6 +70,8 @@
 
 .nav-list {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -52,6 +101,38 @@
     height: 24px;
     margin-right: 0.5rem;
 }
+.search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si es necesario */
+    gap: 10px; /* Espacio entre los elementos del formulario */
+}
+
+.search-form input,
+.search-form select {
+    flex: 1; /* Los elementos de entrada y selección se expanden para llenar el contenedor */
+    min-width: 150px; /* Asegúrate de que los campos tengan un ancho mínimo adecuado */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+    }
+
+    .search-form input,
+    .search-form select {
+        width: 100%; /* Los campos ocuparán el ancho completo del contenedor */
+    }
+}
+
 /* Welcome Section Styles */
 .welcome {
     padding: 1.5rem;

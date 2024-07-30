@@ -1,16 +1,62 @@
+/* Estilos generales */
 html, body {
     height: 100%;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    position: relative;
-    min-height: 100vh;
-    color: #fff;
-    overflow: auto;
     background-image: url('https://i.pinimg.com/originals/97/57/93/975793fff4eb682dcc396c2885a13f2f.jpg');
     background-position: center;
     background-size: cover;
 }
+
+/* Cabecera */
+.header {
+    background-color: #34495e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .book-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px;
+    }
+
+    .nav_links {
+        font-size: 14px;
+    }
+
+    .welcome {
+        font-size: 14px;
+    }
+
+    .book-card {
+        width: 100%;
+    }
+}
+
 
 a {
     text-decoration: none;
@@ -23,15 +69,6 @@ ul {
     margin: 0;
 }
 
-.header {
-    background-color: #34495e;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #fff;
-}
 
 .header h1 {
     font-size: 24px;
@@ -349,3 +386,9 @@ ul {
     justify-content: center;
     gap: 10px;
 }
+.resolucion {
+    width: 99%;
+    text-align: center;
+}
+
+

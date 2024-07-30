@@ -1,28 +1,111 @@
-
-
 /* General Header Styles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .book-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .nav-list {
+        flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin-bottom: 10px; /* Espacio entre los elementos de navegación */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px;
+    }
+
+    .nav_links {
+        font-size: 14px;
+    }
+
+    .welcome {
+        font-size: 14px;
+    }
+
+    .book-card {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .historial {
+        padding: 10px; /* Ajusta el padding para pantallas más pequeñas */
+        overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es demasiado ancha */
+    }
+
+    table {
+        width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+        font-size: 14px; /* Ajusta el tamaño de fuente si es necesario */
+    }
+
+    th, td {
+        padding: 8px; /* Ajusta el padding en las celdas para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .historial {
+        padding: 5px; /* Reduce el padding para pantallas aún más pequeñas */
+    }
+
+    table {
+        font-size: 12px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+    }
+
+    th, td {
+        padding: 6px; /* Reduce el padding en las celdas */
+    }
+}
+.historial {
+    margin: 20px auto; /* Asegura que el contenedor esté centrado */
+    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+    padding: 20px;
+    overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es más ancho */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Permite que la tabla se ajuste automáticamente */
+}
+
+th, td {
+    word-wrap: break-word; /* Permite el ajuste de texto en celdas */
+}
+
 .header {
     padding: 1.2rem;
     background-color: #00040a;
-    color: #fff; /* Asegúrate de que el texto sea visible sobre el fondo oscuro */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #ddd;
-    width: 100%; /* Asegura que el ancho de la cabecera sea el 100% del contenedor */
-    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+    overflow: hidden; /* Evita el desbordamiento */
 }
 
-/* Logo Styles */
 .logo {
-    width: 50px; /* Tamaño del logo */
-    height: auto;
-    margin-right: 10px;
+    width: 32px; /* Ajusta el tamaño según sea necesario */
+    height: 32px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
 }
 
 /* Navigation Styles */
 .nav {
     display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
+    gap: 10px; /* Espacio entre los elementos de navegación */
     padding: 0.75rem 1.25rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
@@ -32,6 +115,8 @@
 
 .nav-list {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -73,6 +158,7 @@
 .historial h1 {
     font-size: 28px;
     margin-bottom: 20px;
+    color: #f9fafb;
 }
 
 table {
@@ -92,6 +178,7 @@ th, td {
 
 th {
     background-color: #000000;
+    color: #e5e7eb;
 }
 
 tbody{
