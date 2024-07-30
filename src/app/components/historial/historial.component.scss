@@ -1,0 +1,102 @@
+
+
+/* General Header Styles */
+.header {
+    padding: 1.2rem;
+    background-color: #00040a;
+    color: #fff; /* Asegúrate de que el texto sea visible sobre el fondo oscuro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    width: 100%; /* Asegura que el ancho de la cabecera sea el 100% del contenedor */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+}
+
+/* Logo Styles */
+.logo {
+    width: 50px; /* Tamaño del logo */
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Navigation Styles */
+.nav {
+    display: flex;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    color: #374151;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 10000;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #3b82f6;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+/* Estilo de la tabla */
+.historial {
+    margin-top: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.historial h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #000000;
+}
+
+tbody{
+    background-color: #f9fafb;
+    color: #000000;
+}
+
+
