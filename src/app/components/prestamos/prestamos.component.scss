@@ -174,12 +174,16 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #fafbfc;
+}
+input[type="date"]{
+    background-color:#fafbfc ;
+    color: #000000;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="number"],
-input[type="date"] {
+input[type="number"] {
     width: 290px;
     padding: 8px;
     border: 1px solid #ccc;
@@ -190,6 +194,7 @@ input[type="date"] {
 input[readonly] {
     background-color: #000000;
 }
+
 
 .button-container {
     display: flex;

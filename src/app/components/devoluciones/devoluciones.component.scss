@@ -2,10 +2,11 @@
 .header {
     padding: 1.2rem;
     background-color: #00040a;
+    overflow: hidden; /* Evita el desbordamiento */
 }
 
 .logo {
-    width: 32px; /* Ajusta el tamaño según sea necesario */
+    width: 32px;
     height: 32px;
     vertical-align: middle;
     margin-right: 0.5rem;
@@ -14,6 +15,8 @@
 /* Navigation Styles */
 .nav {
     display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
+    gap: 10px; /* Espacio entre los elementos de navegación */
     padding: 0.75rem 1.25rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
@@ -23,6 +26,8 @@
 
 .nav-list {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -52,64 +57,91 @@
     height: 24px;
     margin-right: 0.5rem;
 }
-/* Welcome Section Styles */
-.welcome {
-    padding: 1.5rem;
-    border-radius: 0.5rem;
+
+/* Estilo de la tabla */
+.devoluciones-container {
+    margin-top: 20px;
+    max-width: 1200px; /* Ajusta el máximo ancho para pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 20px;
+    overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es demasiado ancha */
+}
+
+.devoluciones-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #f9fafb;
+}
+
+.devoluciones-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.devoluciones-container table, .devoluciones-container th, .devoluciones-container td {
+    border: 1px solid #ddd;
+}
+
+.devoluciones-container th, .devoluciones-container td {
+    padding: 12px;
+    text-align: left;
+}
+
+.devoluciones-container th {
+    background-color: #000000;
+    color: #e5e7eb;
+}
+
+.devoluciones-container tbody {
     background-color: #f9fafb;
-    color: #333;
-    max-width: 800px;
-    margin: 1.5rem auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000000;
 }
 
-.welcome-heading {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #2d3748; /* Darker color for better visibility */
-}
-
-.welcome-intro {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    color: #4a5568; /* Slightly lighter color for readability */
-}
-
-.features {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    
-}
-
-.features li {
-    margin-bottom: 0.5rem;
-    color: #1d1c1c;
-}
-
-.create-button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: #2b6cb0; /* Primary button color */
+.devoluciones-container button {
+    background-color: #3b82f6;
+    color: #ffffff;
     border: none;
-    border-radius: 0.375rem;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-.create-button:hover {
-    background-color: #2b6cb0; /* Slightly darker on hover */
-    transform: scale(1.05);
+.devoluciones-container button:hover {
+    background-color: #2563eb;
 }
 
-.create-button:focus {
-    outline: 2px solid #2b6cb0;
-    outline-offset: 2px;
+/* Media Queries para Dispositivos Móviles */
+@media (max-width: 768px) {
+    .devoluciones-container {
+        padding: 10px; /* Ajusta el padding para pantallas más pequeñas */
+    }
+
+    .devoluciones-container table {
+        font-size: 14px; /* Ajusta el tamaño de fuente si es necesario */
+    }
+
+    .devoluciones-container th, .devoluciones-container td {
+        padding: 8px; /* Ajusta el padding en las celdas para pantallas más pequeñas */
+    }
 }
 
+@media (max-width: 480px) {
+    .devoluciones-container {
+        padding: 5px; /* Reduce el padding para pantallas aún más pequeñas */
+    }
+
+    .devoluciones-container table {
+        font-size: 12px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+    }
+
+    .devoluciones-container th, .devoluciones-container td {
+        padding: 6px; /* Reduce el padding en las celdas */
+    }
+
+    .devoluciones-container h2 {
+        font-size: 20px; /* Ajusta el tamaño del encabezado para pantallas pequeñas */
+    }
+}
