@@ -49,6 +49,9 @@ export class PrestamosComponent implements OnInit {
     }
   };
 
+  reminders: string[] = [];
+  role: string | null = null;
+
   constructor(private authService: AuthService, private userService: UsuariosService, 
               private libroService: LibrosService, private prestamoService: PrestamosService,
               private router: Router) {}
@@ -56,6 +59,7 @@ export class PrestamosComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.authService.getUsername();
     this.libroId = this.authService.getLibroId();
+    this.role = this.authService.getRole();
     this.cargarUsuarios();
     this.cargarLibros();
 
@@ -170,6 +174,8 @@ export class PrestamosComponent implements OnInit {
             next: () => {
               console.log('Libro actualizado a no disponible:', this.newPrestamo.libro);
               this.resetForm();
+              this.cargarPrestamosActivos(); 
+              this.cargarPrestamosNoEntregados();
               this.router.navigate(['/libros']);
             },
             error: (error) => console.error('Error al actualizar libro:', error)
@@ -212,6 +218,28 @@ export class PrestamosComponent implements OnInit {
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     this.newPrestamo.fechaPrestamo = `${year}-${month}-${day}`;
+  }
+
+  cargarPrestamosActivos(): void {
+    this.prestamoService.obtenerPrestamosActivos().subscribe({
+      next: (data: Prestamo[]) => {
+        this.prestamos = data.filter(prestamo => prestamo.usuario.username === this.username);
+      },
+      error: (error) => {
+        console.error('Error al cargar préstamos activos:', error);
+      }
+    });
+  }
+
+  cargarPrestamosNoEntregados(): void{
+    this.prestamoService.obtenerPrestamosNoEntregados().subscribe({
+      next: (data: Prestamo[]) => {
+        this.prestamos = data.filter(prestamo => prestamo.usuario.username === this.username);
+      },
+      error: (error) => {
+        console.error('Error al cargar préstamos activos:', error);
+      }
+    });
   }
 
   cancelar(): void {

@@ -8,8 +8,8 @@ import { Prestamo } from '../model/prestamo';
 })
 export class PrestamosService {
 
-  private apiUrl = 'http://localhost:8080/biblioteca/rs/prestamos'
-  
+  private apiUrl = 'http://localhost:8080/biblioteca/rs/prestamos';
+
   constructor(private http: HttpClient) { }
 
   obtenerPrestamo(): Observable<Prestamo[]> {
@@ -18,5 +18,21 @@ export class PrestamosService {
 
   guardarPrestamo(prestamo: Prestamo): Observable<Prestamo> {
     return this.http.post<Prestamo>(this.apiUrl, prestamo);
+  }
+
+  obtenerPrestamosActivos(): Observable<Prestamo[]> {
+    return this.http.get<Prestamo[]>(`${this.apiUrl}/activos`);
+  }
+
+  devolverPrestamo(prestamoId: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/devolver/${prestamoId}`, {});
+  }
+
+  obtenerPrestamosNoEntregados(): Observable<Prestamo[]> {
+    return this.http.get<Prestamo[]>(`${this.apiUrl}/entregados`);
+  }
+
+  entregarPrestamo(prestamoId: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/entregar/${prestamoId}`, {});
   }
 }
