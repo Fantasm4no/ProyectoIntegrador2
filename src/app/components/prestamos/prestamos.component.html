@@ -37,7 +37,7 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item" *ngIf="role === 'admin'">
+        <li class="nav-item">
           <a href="/devolucion" class="nav-link">
               Devolucion
               <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -74,10 +74,10 @@
           <h4>Fechas</h4>
           <div class="form-group">
               <label for="fechaPrestamo">Fecha de Préstamo:</label>
-              <input type="date" id="fechaPrestamo" name="fechaPrestamo" [(ngModel)]="newPrestamo.fechaPrestamo" readonly>
+              <input type="text" id="fechaPrestamo" name="fechaPrestamo" [(ngModel)]="newPrestamo.fechaPrestamo" readonly>
           </div>
           <div class="form-group">
-              <label for="fechaDevolucion">Fecha de Devolución:</label>
+              <label for="fechaDevolucion">Fecha de Devolución:</label >
               <input type="date" id="fechaDevolucion" name="fechaDevolucion" required>
           </div>
         </div>  

@@ -29,7 +29,7 @@
             </svg>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="role === 'admin'">
           <a href="/historial" class="nav-link">
             Historial
             <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -58,23 +58,58 @@
   </header>
 
   <div *ngIf="role === 'admin'">
-    <h2>Devoluciones Pendientes</h2>
-    <div *ngFor="let prestamo of prestamos">
-      <h3>{{ prestamo.libro.titulo }}</h3>
-      <p>Usuario: {{ prestamo.usuario.username }}</p>
-      <p>Fecha de Préstamo: {{ prestamo.fechaPrestamo | date }}</p>
-      <p>Fecha de Devolución: {{ prestamo.fechaDevolucion | date }}</p>
-      <button *ngIf="prestamo.prestamoId !== undefined" (click)="devolverPrestamo(prestamo.prestamoId!)">Devolver</button>
+    <div class="devoluciones-container">
+        <h2>Devoluciones Pendientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título del Libro</th>
+                    <th>Usuario</th>
+                    <th>Fecha de Préstamo</th>
+                    <th>Fecha de Devolución</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prestamo of prestamos">
+                    <td>{{ prestamo.libro.titulo }}</td>
+                    <td>{{ prestamo.usuario.username }}</td>
+                    <td>{{ prestamo.fechaPrestamo | date }}</td>
+                    <td>{{ prestamo.fechaDevolucion | date }}</td>
+                    <td *ngIf="prestamo.prestamoId !== undefined">
+                        <button (click)="devolverPrestamo(prestamo.prestamoId!)">Devolver</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 
-  <div *ngIf="role != 'admin'">
-    <h2>Devoluciones Pendientes</h2>
-    <div *ngFor="let prestamo of prestamos">
-      <h3>{{ prestamo.libro.titulo }}</h3>
-      <p>Usuario: {{ prestamo.usuario.username }}</p>
-      <p>Fecha de Préstamo: {{ prestamo.fechaPrestamo | date }}</p>
-      <p>Fecha de Devolución: {{ prestamo.fechaDevolucion | date }}</p>
-      <button *ngIf="prestamo.prestamoId !== undefined" (click)="entregarPrestamo(prestamo.prestamoId!)">Entregar</button>
+<div *ngIf="role != 'admin'">
+    <div class="devoluciones-container">
+        <h2>Devoluciones Pendientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título del Libro</th>
+                    <th>Usuario</th>
+                    <th>Fecha de Préstamo</th>
+                    <th>Fecha de Devolución</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prestamo of prestamos">
+                    <td>{{ prestamo.libro.titulo }}</td>
+                    <td>{{ prestamo.usuario.username }}</td>
+                    <td>{{ prestamo.fechaPrestamo | date }}</td>
+                    <td>{{ prestamo.fechaDevolucion | date }}</td>
+                    <td *ngIf="prestamo.prestamoId !== undefined">
+                        <button (click)="entregarPrestamo(prestamo.prestamoId!)">Entregar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
+
