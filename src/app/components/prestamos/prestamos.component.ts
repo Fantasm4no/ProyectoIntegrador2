@@ -38,7 +38,8 @@ export class PrestamosComponent implements OnInit {
       autor: '',
       contenido: '',
       portada: '',
-      disponibilidad: false
+      disponibilidad: false,
+      reservado: false
     },
     usuario: {
       usuarioId: 0,
@@ -199,7 +200,8 @@ export class PrestamosComponent implements OnInit {
         autor: '',
         contenido: '',
         portada: '',
-        disponibilidad: false
+        disponibilidad: false,
+        reservado: false
       },
       usuario: {
         usuarioId: 0,

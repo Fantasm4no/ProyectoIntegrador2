@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
 export class LibrosComponent implements OnInit {
 
   libros: Libro[] = [];
-  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true};
+  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true, reservado: false};
   libroEditIndex: number | null = null;
   filteredLibros: Libro[] = []; 
   categorias: string[] = []; 
@@ -78,7 +78,7 @@ export class LibrosComponent implements OnInit {
   }
 
   resetForm() {
-    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true};
+    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true, reservado: false};
     this.libroEditIndex = null;
   }
 

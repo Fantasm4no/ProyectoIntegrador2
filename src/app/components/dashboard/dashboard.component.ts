@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
+import { PrestamosService } from '../../services/prestamos.service';
+import { Prestamo } from '../../model/prestamo';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,12 +21,22 @@ import { jwtDecode } from 'jwt-decode';
 export class DashboardComponent implements OnInit {
   
   libros?: Libro[];
-  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true };
+  newLibro: Libro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true , reservado: false};
   mostrarFormulario: boolean = false;
   mostrarWelcome: boolean = true;
   role: string | null = null;
+  prestamos?: Prestamo[];
+  reminders: string[] = [];
+  username: string | null = null;
 
-  constructor(private libroService: LibrosService, private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private libroService: LibrosService, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute, 
+    private authService: AuthService, 
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private prestamoService: PrestamosService
+  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -49,6 +61,34 @@ export class DashboardComponent implements OnInit {
         }
       });
     }
+    this.username = this.authService.getUsername();
+    this.cargarEntregasPendientes();
+  }
+
+  cargarEntregasPendientes(): void {
+    if (this.username) {
+      this.prestamoService.obtenerPrestamosNoEntregadosPorUsuario(this.username).subscribe({
+        next: (data: Prestamo[]) => {
+          console.log('Préstamos no entregados recibidos:', data);
+          this.prestamos = data;
+          this.generarRecordatorios(); // Generar recordatorios después de cargar los préstamos
+        },
+        error: (error) => {
+          console.error('Error al cargar entregas pendientes:', error);
+        }
+      });
+    } else {
+      console.error('No se puede cargar entregas pendientes, username no disponible');
+    }
+  }
+
+  generarRecordatorios(): void {
+    const now = new Date();
+    this.reminders = this.prestamos?.filter(prestamo => new Date(prestamo.fechaDevolucion) > now)
+      .map(prestamo => {
+        const diasRestantes = Math.ceil((new Date(prestamo.fechaDevolucion).getTime() - now.getTime()) / (1000 * 3600 * 24));
+        return `Recordatorio: Estimado "${prestamo.usuario.username}" El libro "${prestamo.libro.titulo}" debe ser devuelto en ${diasRestantes} días.`;
+      }) || [];
   }
 
   createLibro(): void {
@@ -60,7 +100,7 @@ export class DashboardComponent implements OnInit {
   }
 
   resetForm() {
-    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true };
+    this.newLibro = { titulo: '', edicion: 0, genero: '', autor: '', contenido: '', portada: '', disponibilidad: true, reservado: false };
     this.mostrarFormulario = false;
   }
 

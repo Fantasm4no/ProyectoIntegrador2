@@ -65,65 +65,42 @@
     </nav>
 </header>
 
-<!-- Sección Welcome -->
-<div class="welcome" *ngIf="mostrarWelcome">
-    <h3 class="welcome-heading">¡Bienvenido a la Biblioteca Virtual! 📚</h3>
-    <h5 class="welcome-intro">
-      Estamos encantados de tenerte aquí. En nuestra biblioteca, tendrás acceso a una amplia colección de libros y recursos que te permitirán explorar nuevos mundos, aprender sobre diversos temas y disfrutar de la lectura como nunca antes.
-    </h5>
-    <ul class="features">
-      <li>Explora nuestra colección: Navega por una variedad de libros en diferentes géneros y temas.</li>
-      <li>Administra tus préstamos: Controla y realiza un seguimiento de tus libros prestados.</li>
-    </ul>
-    <button *ngIf="role === 'admin'" class="create-button" (click)="mostrarFormulario = true">Crear Libro</button>
-  </div>
-  
-  <!-- Sección de Recordatorios -->
-  <div *ngIf="reminders.length > 0" class="mt-4 p-4 bg-yellow-200 text-yellow-800 rounded">
-    <p *ngFor="let reminder of reminders">{{ reminder }}</p>
-  </div>
-  
-
-
-
-
-<!-- Ventana Modal para Crear Libro -->
-<div class="modal" *ngIf="mostrarFormulario">
-    <div class="modal-content">
-        <span class="close" (click)="mostrarFormulario = false">&times;</span>
-        <h2>Crear Libro</h2>
-        <form class="form" (ngSubmit)="createLibro()">
-            <div class="form-group">
-                <label>Título:</label>
-                <input [(ngModel)]="newLibro.titulo" name="titulo" required>
+<div class="book-container">
+    <div class="book-card">
+        <h2>Reservar Libro</h2>
+        <p>Usted está reservando el libro como <br><br>
+            <strong>{{ usuarioActual?.username }}</strong></p>
+            <form (ngSubmit)="createReserva()" class="form-group">
+            <div>
+                <label for="fechaReserva">Fecha de Reserva:</label>
+                <input type="date" id="fechaReserva" name="fechaReserva" required>
             </div>
-            <div class="form-group">
-                <label>Edición:</label>
-                <input [(ngModel)]="newLibro.edicion" name="edicion" required>
+            <div>
+                <label for="libro">Selecciona un Libro:</label>
+                <select (change)="onLibroChange($event)" required>
+                    <option *ngFor="let libro of libros" [value]="libro.libroId">{{ libro.titulo }}</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label>Género:</label>
-                <input [(ngModel)]="newLibro.genero" name="genero" required>
-            </div>
-            <div class="form-group">
-                <label>Autor:</label>
-                <input [(ngModel)]="newLibro.autor" name="autor" required>
-            </div>
-            <div class="form-group">
-                <label>Contenido:</label>
-                <input [(ngModel)]="newLibro.contenido" name="contenido" required>
-            </div>
-            <div class="form-group">
-                <label>Portada:</label>
-                <input [(ngModel)]="newLibro.portada" name="portada">
-            </div>
-            <div class="form-group">
-                <label>disponibilidad:</label>
-                <input [(ngModel)]="newLibro.disponibilidad" name="disponibilidad">
-            </div>
-            <button type="submit" class="delete-button">Crear</button>
-            <button type="button" (click)="mostrarFormulario = false" class="delete-button">Cancelar</button>
+            <button type="submit" class="delete-button">Reservar Libro</button>
         </form>
+
+        <div *ngIf="showSuccess">
+            {{ successMessage }}
+          </div>
+        
+          <div *ngIf="reminders.length > 0" >
+            <p *ngFor="let reminder of reminders">{{ reminder }}</p>
+          </div>
     </div>
 </div>
 
+<div>
+    <h2>Reservas Pendientes</h2>
+    <div *ngFor="let reserva of reservas" >
+      <h3>{{ reserva.libro.titulo }}</h3>
+      <p>Usuario: {{ reserva.usuario.username }}</p>
+      <p>Fecha de Reserva: {{ reserva.fechaReserva | date }}</p>
+
+      <button *ngIf="reserva.reservaId !== undefined" (click)="cancelarReserva(reserva.reservaId!)" >Cancelar Reserva</button>
+    </div>
+</div>
