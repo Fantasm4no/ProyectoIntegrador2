@@ -32,8 +32,12 @@
                     <li><a href="/reservas" class="dropdown-link">Reservas</a></li>
                     <li><a href="/prestamos" class="dropdown-link">Préstamos</a></li>
                     <li><a href="/devolucion" class="dropdown-link">Devolución</a></li>
-                    <li><a href="/historial" class="dropdown-link" *ngIf="role === 'admin'">Historial</a></li>
-                    <li><a href="/reporte" class="dropdown-link" *ngIf="role === 'admin'">Reportes</a></li>
+                    <li *ngIf="role === 'admin'">
+                        <a href="/historial" class="dropdown-link">Historial</a>
+                    </li>
+                    <li *ngIf="role === 'admin'">
+                        <a href="/reporte" class="dropdown-link">Reportes</a>
+                    </li>
                     <li><a href="/ayuda" class="dropdown-link">Ayuda</a></li>
                     <li><a href="/informacion" class="dropdown-link">Información</a></li>
                     <li><a href="/aboutUs" class="dropdown-link">Sobre Nosotros</a></li>

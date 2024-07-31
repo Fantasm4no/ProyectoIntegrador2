@@ -1,5 +1,9 @@
 /* General Header Styles */
 /* General Header Styles */
+.hidden {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .header {
         //flex-direction: column;
