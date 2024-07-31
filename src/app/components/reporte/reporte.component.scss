@@ -1,0 +1,217 @@
+/* General Header Styles */
+/* General Header Styles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .book-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .nav-list {
+        flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin-bottom: 10px; /* Espacio entre los elementos de navegación */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px;
+    }
+
+    .nav_links {
+        font-size: 14px;
+    }
+
+    .welcome {
+        font-size: 14px;
+    }
+
+    .book-card {
+        width: 100%;
+    }
+}
+.header {
+    padding: 1.2rem;
+    background-color: #00040a;
+}
+
+.logo {
+    width: 32px; /* Ajusta el tamaño según sea necesario */
+    height: 32px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+/* Navigation Styles */
+.nav {
+    display: flex;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    color: #374151;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute;
+    top: 100%; /* Coloca el menú justo debajo del ítem de navegación */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 200px; /* Ancho del menú */
+    z-index: 1000; /* Asegura que el menú se muestre encima de otros elementos */
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Muestra el menú cuando el ítem de navegación es hover o tiene la clase 'show' */
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 10000;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #3b82f6;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .historial {
+        padding: 10px; /* Ajusta el padding para pantallas más pequeñas */
+        overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es demasiado ancha */
+    }
+
+    table {
+        width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+        font-size: 14px; /* Ajusta el tamaño de fuente si es necesario */
+    }
+
+    th, td {
+        padding: 8px; /* Ajusta el padding en las celdas para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .historial {
+        padding: 5px; /* Reduce el padding para pantallas aún más pequeñas */
+    }
+
+    table {
+        font-size: 12px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+    }
+
+    th, td {
+        padding: 6px; /* Reduce el padding en las celdas */
+    }
+}
+.historial {
+    margin: 20px auto; /* Asegura que el contenedor esté centrado */
+    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+    padding: 20px;
+    overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es más ancho */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Permite que la tabla se ajuste automáticamente */
+}
+
+th, td {
+    word-wrap: break-word; /* Permite el ajuste de texto en celdas */
+}
+
+.historial {
+    margin-top: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.historial h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #f9fafb;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #000000;
+    color: #e5e7eb;
+}
+
+tbody{
+    background-color: #f9fafb;
+    color: #000000;
+}

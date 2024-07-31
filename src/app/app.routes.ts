@@ -9,6 +9,7 @@ import ReservasComponent from './components/reserva/reserva.component';
 import { InformacionComponent } from './components/informacion/informacion.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
+import { ReporteUsuariosComponent } from './components/reporte/reporte.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -20,7 +21,8 @@ export const routes: Routes = [
     { path: 'reservas', component: ReservasComponent, canActivate: [authGuard]},
     { path: 'informacion', component: InformacionComponent, canActivate: [authGuard]},
     { path: 'aboutUs', component: AboutUsComponent, canActivate: [authGuard]},
-    { path: 'ayuda', component: AyudaComponent, canActivate: [authGuard]},    
+    { path: 'ayuda', component: AyudaComponent, canActivate: [authGuard]},
+    { path: 'reporte', component: ReporteUsuariosComponent, canActivate: [authGuard]},    
     { path: '**', redirectTo: 'dashboard' }     
      
 ];

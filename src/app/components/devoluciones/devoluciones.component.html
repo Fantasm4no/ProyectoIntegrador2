@@ -1,82 +1,83 @@
 <header class="header">
     <h1>
-      <img class="logo" src="https://cdn-icons-png.flaticon.com/128/5351/5351366.png" alt="Logo Ups"> Biblioteca
+        <img class="logo" src="https://cdn-icons-png.flaticon.com/128/5351/5351366.png" alt="Logo Ups"> Biblioteca
     </h1>
 
     <nav class="nav">
-      <ol class="nav-list">
-          <li class="nav-item">
-              <a href="#" class="nav-link">
-                  Inicio
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
-                  </svg>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a href="/libros" class="nav-link">
-                  Libros
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd"/>
-                  </svg>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a href="/reservas" class="nav-link">
-                  Reservas
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd"/>
-                  </svg>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a href="/prestamos" class="nav-link">
-                  Prestamos
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-6 8a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
-                  </svg>
-              </a>
-          </li>
-          <li class="nav-item" *ngIf="role === 'admin'">
-              <a href="/historial" class="nav-link">
-                  Historial
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
-                    </svg>                      
-              </a>
-          </li>
-          <li class="nav-item">
-              <a href="/devolucion" class="nav-link">
-                  Devolucion
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-6 8a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
-                  </svg>
-              </a>
-          </li>
-          <li class="nav-item dropdown">
-              Otros
-              <a href="#" class="nav-link">
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M12 16a1 1 0 0 1-.7-.29l-6-6a1 1 0 1 1 1.4-1.4L12 13.6l5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6A1 1 0 0 1 12 16z" clip-rule="evenodd"/>
-                  </svg>
-              </a>
-              <ul class="dropdown-menu">
-                  <li><a href="/ayuda" class="dropdown-link">Ayuda</a></li>
-                  <li><a href="/informacion" class="dropdown-link">Información</a></li>
-                  <li><a href="/aboutUs" class="dropdown-link">Sobre Nosotros</a></li>
-              </ul>
-          </li>
-          <li class="nav-item">
-              <a (click)="logout()" class="nav-link">
-                  Salir
-                  <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
-                  </svg>
-              </a>
-          </li>
-      </ol>
-  </nav>
-  </header>
+        <ol class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    Inicio
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/libros" class="nav-link">
+                    Libros
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/reservas" class="nav-link">
+                    Reservas
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/prestamos" class="nav-link">
+                    Prestamos
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-6 8a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="role === 'admin'">
+                <a href="/historial" class="nav-link">
+                    Historial
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
+                      </svg>                      
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/devolucion" class="nav-link">
+                    Devolucion
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-6 8a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                Otros
+                <a href="#" class="nav-link">
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 16a1 1 0 0 1-.7-.29l-6-6a1 1 0 1 1 1.4-1.4L12 13.6l5.3-5.3a1 1 0 1 1 1.4 1.4l-6 6A1 1 0 0 1 12 16z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/reporte" class="dropdown-link" *ngIf="role === 'admin'">Reportes</a></li>
+                    <li><a href="/ayuda" class="dropdown-link">Ayuda</a></li>
+                    <li><a href="/informacion" class="dropdown-link">Información</a></li>
+                    <li><a href="/aboutUs" class="dropdown-link">Sobre Nosotros</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a (click)="logout()" class="nav-link">
+                    Salir
+                    <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+                    </svg>
+                </a>
+            </li>
+        </ol>
+    </nav>
+</header>
 
   <div *ngIf="role === 'admin'">
     <div class="devoluciones-container">
