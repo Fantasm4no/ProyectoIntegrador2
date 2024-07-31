@@ -88,24 +88,21 @@
       <li>Explora nuestra colección: Navega por una variedad de libros en diferentes géneros y temas.</li>
       <li>Administra tus préstamos: Controla y realiza un seguimiento de tus libros prestados.</li>
     </ul>
+
+    <!-- Sección de Recordatorios -->
+    <div>
+        <p *ngFor="let reminder of reminders">{{ reminder }}</p>
+    </div>
+
     <button *ngIf="role === 'admin'" class="create-button" (click)="mostrarFormulario = true">Crear Libro</button>
   </div>
-  
-  <!-- Sección de Recordatorios -->
-  <div *ngIf="reminders.length > 0" class="mt-4 p-4 bg-yellow-200 text-yellow-800 rounded">
-    <p *ngFor="let reminder of reminders">{{ reminder }}</p>
-  </div>
-  
-
-
-
 
 <!-- Ventana Modal para Crear Libro -->
 <div class="modal" *ngIf="mostrarFormulario">
     <div class="modal-content">
         <span class="close" (click)="mostrarFormulario = false">&times;</span>
         <h2>Crear Libro</h2>
-        <form class="form" (ngSubmit)="createLibro()">
+        <form class="form" (ngSubmit)="createLibro()" #form="ngForm">
             <div class="form-group">
                 <label>Título:</label>
                 <input [(ngModel)]="newLibro.titulo" name="titulo" required>
@@ -130,13 +127,8 @@
                 <label>Portada:</label>
                 <input [(ngModel)]="newLibro.portada" name="portada">
             </div>
-            <div class="form-group">
-                <label>disponibilidad:</label>
-                <input [(ngModel)]="newLibro.disponibilidad" name="disponibilidad">
-            </div>
-            <button type="submit" class="delete-button">Crear</button>
+            <button type="submit" class="delete-button" [disabled]="!form.valid">Crear</button>
             <button type="button" (click)="mostrarFormulario = false" class="delete-button">Cancelar</button>
         </form>
     </div>
 </div>
-
