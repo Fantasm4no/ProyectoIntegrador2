@@ -1,13 +1,13 @@
 /* General Header Styles */
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
+        //flex-direction: column;
         align-items: flex-start;
         padding: 10px;
     }
 
     .nav_links {
-        flex-direction: column;
+        //flex-direction: column;
         gap: 10px;
     }
 
@@ -16,7 +16,7 @@
         margin-bottom: 20px;
     }
     .nav-list {
-        flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+        //flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
         align-items: flex-start;
         padding: 0;
     }
