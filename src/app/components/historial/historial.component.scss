@@ -87,11 +87,10 @@ table {
 th, td {
     word-wrap: break-word; /* Permite el ajuste de texto en celdas */
 }
-
+/* General Header Styles */
 .header {
     padding: 1.2rem;
     background-color: #00040a;
-    overflow: hidden; /* Evita el desbordamiento */
 }
 
 .logo {
@@ -104,8 +103,6 @@ th, td {
 /* Navigation Styles */
 .nav {
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
-    gap: 10px; /* Espacio entre los elementos de navegación */
     padding: 0.75rem 1.25rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
@@ -115,8 +112,6 @@ th, td {
 
 .nav-list {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -125,6 +120,61 @@ th, td {
 .nav-item {
     display: flex;
     align-items: center;
+    position: relative;
+}
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute;
+    top: 100%; /* Coloca el menú justo debajo del ítem de navegación */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 200px; /* Ancho del menú */
+    z-index: 1000; /* Asegura que el menú se muestre encima de otros elementos */
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Muestra el menú cuando el ítem de navegación es hover o tiene la clase 'show' */
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 10000;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #3b82f6;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
 }
 
 .nav-link {
