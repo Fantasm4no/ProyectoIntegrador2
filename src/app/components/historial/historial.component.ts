@@ -6,6 +6,7 @@ import { Prestamo } from '../../model/prestamo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-historial',
@@ -17,11 +18,13 @@ import { RouterLink } from '@angular/router';
 export class HistorialComponent {
 
   prestamos: Prestamo[] = [];
+  role: string | null = null
 
-  constructor(private prestamoService: PrestamosService) {}
+  constructor(private prestamoService: PrestamosService, private authService: AuthService) {}
 
   ngOnInit() {
     this.cargarPrestamos();
+    this.role = this.authService.getRole()
   }
 
   cargarPrestamos(): void {

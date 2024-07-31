@@ -6,6 +6,9 @@ import { authGuard } from './auth.guard';
 import { HistorialComponent } from './components/historial/historial.component';
 import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
 import ReservasComponent from './components/reserva/reserva.component';
+import { InformacionComponent } from './components/informacion/informacion.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -15,6 +18,9 @@ export const routes: Routes = [
     { path: 'historial', component: HistorialComponent, canActivate: [authGuard]},
     { path: 'devolucion', component: DevolucionesComponent, canActivate: [authGuard]},
     { path: 'reservas', component: ReservasComponent, canActivate: [authGuard]},
+    { path: 'informacion', component: InformacionComponent, canActivate: [authGuard]},
+    { path: 'aboutUs', component: AboutUsComponent, canActivate: [authGuard]},
+    { path: 'ayuda', component: AyudaComponent, canActivate: [authGuard]},    
     { path: '**', redirectTo: 'dashboard' }     
      
 ];

@@ -1,0 +1,137 @@
+/* General Header Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Asegura que el body ocupe toda la altura de la ventana del navegador */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Hace que los elementos se dispongan en una columna */
+}
+.header {
+    padding: 1.2rem;
+    background-color: #00040a;
+}
+
+.logo {
+    width: 32px; /* Ajusta el tamaño según sea necesario */
+    height: 32px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+/* Navigation Styles */
+.nav {
+    display: flex;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    color: #374151;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute;
+    top: 100%; /* Coloca el menú justo debajo del ítem de navegación */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 200px; /* Ancho del menú */
+    z-index: 1000; /* Asegura que el menú se muestre encima de otros elementos */
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Muestra el menú cuando el ítem de navegación es hover o tiene la clase 'show' */
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 10000;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #3b82f6;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+/* Main Content Styles */
+.main {
+    padding: 20px;
+}
+
+/* Main Container Styles */
+/* Main Container Styles */
+.main-container {
+    flex: 1; /* Esto hace que el main-container ocupe el espacio restante disponible */
+    padding: 2rem;
+    background-color: #ffffff; /* Fondo blanco para el contenido principal */
+    border-radius: 8px; /* Bordes redondeados para un aspecto más moderno */
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    margin: 0 auto; /* Centra el contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+/* Footer Styles */
+.footer {
+    padding: 1rem;
+    background-color: #f1f5f9;
+    text-align: center;
+    color: #333;
+}
+
+.social-media {
+    text-align: center;
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: auto;
+}
