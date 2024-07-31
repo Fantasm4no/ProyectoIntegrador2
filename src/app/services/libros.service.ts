@@ -8,7 +8,7 @@ import { Libro } from '../model/libro';
 })
 export class LibrosService {
 
-  private apiUrl = 'http://localhost:8080/biblioteca/rs/libros';
+  private apiUrl = 'http://192.168.177.138:8080/biblioteca(1)/rs/libros';
 
   constructor(private http: HttpClient) { }
 

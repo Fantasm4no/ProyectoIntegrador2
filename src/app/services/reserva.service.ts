@@ -9,7 +9,7 @@ import { Libro } from '../model/libro';
 })
 export class ReservaService {
 
-  private apiUrl = 'http://localhost:8080/biblioteca/rs/reservas';
+  private apiUrl = 'http://192.168.177.138:8080/biblioteca(1)/rs/reservas';
 
   constructor(private http: HttpClient) { }
 

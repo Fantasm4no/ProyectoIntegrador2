@@ -14,7 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     if (authService.isAuthenticated()) {
       return true;
     } else {
-      window.location.href = 'http://localhost:8080/biblioteca/LoginUsu.xhtml'; 
+      window.location.href = 'http://192.168.177.138:8080/biblioteca(1)/LoginUsu.xhtml'; 
       return false;
     }
   } else {

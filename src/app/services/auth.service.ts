@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth/login';
+  private apiUrl = 'http://192.168.177.138:8080/api/auth/login';
   private _libroId: number | null = null;
   private disponibilidadOriginal: boolean | null = null;
 

@@ -8,7 +8,7 @@ import { Usuario } from '../model/usuario';
 })
 export class UsuariosService {
 
-  private apiUrl = 'http://localhost:8080/biblioteca/rs/auth'; 
+  private apiUrl = 'http://192.168.177.138:8080/biblioteca(1)/rs/auth'; 
   
   constructor(private http: HttpClient) { }
 
