@@ -10,7 +10,7 @@
         <h1>
             <img class="logo" src="https://cdn-icons-png.flaticon.com/128/5351/5351366.png" alt="Logo Ups"> Biblioteca
         </h1>
-
+    
         <nav class="nav">
             <ol class="nav-list">
                 <li class="nav-item">
@@ -69,6 +69,7 @@
                         </svg>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="/reporte" class="dropdown-link" *ngIf="role === 'admin'">Reportes</a></li>
                         <li><a href="/ayuda" class="dropdown-link">Ayuda</a></li>
                         <li><a href="/informacion" class="dropdown-link">Información</a></li>
                         <li><a href="/aboutUs" class="dropdown-link">Sobre Nosotros</a></li>

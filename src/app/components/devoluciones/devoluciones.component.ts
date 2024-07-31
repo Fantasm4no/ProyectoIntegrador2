@@ -69,6 +69,7 @@ export class DevolucionesComponent implements OnInit {
         console.log('Préstamo devuelto con éxito');
         // Volver a cargar las entregas pendientes
         this.cargarEntregasPendientes();
+        window.location.reload()
       },
       error: (error) => {
         console.error('Error al devolver el préstamo:', error);
