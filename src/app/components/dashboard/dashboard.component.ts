@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
-import { jwtDecode } from 'jwt-decode';
+import  jwtDecode  from 'jwt-decode';
 import { PrestamosService } from '../../services/prestamos.service';
 import { Prestamo } from '../../model/prestamo';
 

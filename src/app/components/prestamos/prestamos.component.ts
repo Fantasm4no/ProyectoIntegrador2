@@ -9,7 +9,7 @@ import { LibrosService } from '../../services/libros.service';
 import { Libro } from '../../model/libro';
 import { PrestamosService } from '../../services/prestamos.service';
 import { Prestamo } from '../../model/prestamo';
-import { jwtDecode } from 'jwt-decode';
+import  jwtDecode  from 'jwt-decode';
 
 @Component({
   selector: 'app-prestamos',

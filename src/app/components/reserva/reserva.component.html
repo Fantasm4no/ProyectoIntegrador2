@@ -60,12 +60,12 @@
         <h2>Reservar Libro</h2>
         <p>Usted está reservando el libro como <br><br>
             <strong>{{ usuarioActual?.username }}</strong></p>
-        <form (ngSubmit)="createReserva()" class="reservation-form">
-            <div class="form-group">
+            <form (ngSubmit)="createReserva()" class="form-group">
+            <div>
                 <label for="fechaReserva">Fecha de Reserva:</label>
                 <input type="date" id="fechaReserva" name="fechaReserva" required>
             </div>
-            <div class="form-group">
+            <div>
                 <label for="libro">Selecciona un Libro:</label>
                 <select (change)="onLibroChange($event)" required>
                     <option *ngFor="let libro of libros" [value]="libro.libroId">{{ libro.titulo }}</option>
@@ -74,14 +74,16 @@
             <button type="submit" class="delete-button">Reservar Libro</button>
         </form>
 
-        <div class="pending-reservations">
+        <div>
             <h2>Reservas Pendientes</h2>
-            <div *ngFor="let reserva of reservas" class="reservation-card">
-                <h3>{{ reserva.libro.titulo }}</h3>
-                <p>Usuario: {{ reserva.usuario.username }}</p>
-                <p>Fecha de Reserva: {{ reserva.fechaReserva | date }}</p>
-                <button *ngIf="reserva.reservaId !== undefined" (click)="cancelarReserva(reserva.reservaId!)" class="cancel-button">Cancelar Reserva</button>
+            <div *ngFor="let reserva of reservas" >
+              <h3>{{ reserva.libro.titulo }}</h3>
+              <p>Usuario: {{ reserva.usuario.username }}</p>
+              <p>Fecha de Reserva: {{ reserva.fechaReserva | date }}</p>
+        
+              <button *ngIf="reserva.reservaId !== undefined" (click)="cancelarReserva(reserva.reservaId!)" >Cancelar Reserva</button>
             </div>
         </div>
+        
     </div>
 </div>
